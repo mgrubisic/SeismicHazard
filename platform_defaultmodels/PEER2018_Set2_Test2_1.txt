@@ -1,0 +1,57 @@
+#Test 2.1 includes an area source zone, similar to Test 1.11, and two fault sources. The test requires
+#the code to calculate and sum the hazard for multiple sources and perform a deaggregation on the
+#magnitude, distance, and epsilon values. Ground-motion variability is included.
+  
+Option 0 - Global Parameters
+Projection   : WGS84
+Image        : PEER2018Set2_Area2_Faults_B_C.mat
+Boundary     : 
+Layer        : 
+ShearModulus : 3e11      #dyne/cm2
+IM           : 0
+im           : 0.001 0.01 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.7 0.8 0.9 1
+MaxDistance  : 500
+MagDiscrete  : uniform 0.05
+SimPCE       : 10
+IM1          : 0.01
+IM2          : 0.1 0.2 0.5 1 2
+Spatial      : @none_spatial
+Spectral     : @none_spectral
+
+Option 1 - Logic Tree Weights
+Geom Weight : 1
+Gmpe Weight : 1
+Mscl Weight : 1 
+
+Option 2 - Source Geometry
+geometry 1 Areal Source (Background Seismicity)
+Area2  type area mechanism grid thickness 5 gmpe 1 vertices 0.8993 -65 -7.5 0.8971 -64.9373 -7.5 0.8906 -64.8748 -7.5 0.8797 -64.813 -7.5 0.8645 -64.7521 -7.5 0.8451 -64.6924 -7.5 0.8216 -64.6342 -7.5 0.794 -64.5778 -7.5 0.7627 -64.5234 -7.5 0.7276 -64.4714 -7.5 0.6899 -64.4219 -7.5 0.6469 -64.3753 -7.5 0.6017 -64.3316 -7.5 0.5537 -64.2913 -7.5 0.5029 -64.2544 -7.5 0.4496 -64.2211 -7.5 0.3942 -64.1917 -7.5 0.3369 -64.1662 -7.5 0.2779 -64.1447 -7.5 0.2176 -64.1274 -7.5 0.1562 -64.1143 -7.5 0.094 -64.1056 -7.5 0.0314 -64.1012 -7.5 -0.0314 -64.1012 -7.5 -0.094 -64.1056 -7.5 -0.1562 -64.1143 -7.5 -0.2176 -64.1274 -7.5 -0.2779 -64.1447 -7.5 -0.3369 -64.1662 -7.5 -0.3942 -64.1917 -7.5 -0.4496 -64.2211 -7.5 -0.5029 -64.2544 -7.5 -0.5537 -64.2913 -7.5 -0.6017 -64.3316 -7.5 -0.6469 -64.3753 -7.5 -0.6889 -64.4219 -7.5 -0.7276 -64.4714 -7.5 -0.7627 -64.5234 -7.5 -0.794 -64.5778 -7.5 -0.8216 -64.6342 -7.5 -0.8451 -64.6924 -7.5 -0.8645 -64.7521 -7.5 -0.8797 -64.813 -7.5 -0.8906 -64.8748 -7.5 -0.8971 -64.9373 -7.5 -0.8993 -65 -7.5 -0.8971 -65.0627 -7.5 -0.8906 -65.1252 -7.5 -0.8797 -65.187 -7.5 -0.8645 -65.2479 -7.5 -0.8451 -65.3076 -7.5 -0.8216 -65.3658 -7.5 -0.794 -65.4222 -7.5 -0.7627 -65.4766 -7.5 -0.7276 -65.5286 -7.5 -0.6889 -65.5781 -7.5 -0.6469 -65.6247 -7.5 -0.6017 -65.6684 -7.5 -0.5537 -65.7087 -7.5 -0.5029 -65.7456 -7.5 -0.4496 -65.7789 -7.5 -0.3942 -65.8083 -7.5 -0.3369 -65.8338 -7.5 -0.2779 -65.8553 -7.5 -0.2176 -65.8726 -7.5 -0.1562 -65.8857 -7.5 -0.094 -65.8944 -7.5 -0.0314 -65.8988 -7.5 0.0314 -65.8988 -7.5 0.094 -65.8944 -7.5 0.1562 -65.8857 -7.5 0.2176 -65.8726 -7.5 0.2779 -65.8553 -7.5 0.3369 -65.8338 -7.5 0.3942 -65.8083 -7.5 0.4496 -65.7789 -7.5 0.5029 -65.7456 -7.5 0.5537 -65.7087 -7.5 0.6017 -65.6684 -7.5 0.6469 -65.6247 -7.5 0.6889 -65.5781 -7.5 0.7276 -65.5286 -7.5 0.7627 -65.4766 -7.5 0.794 -65.4222 -7.5 0.8216 -65.3658 -7.5 0.8451 -65.3076 -7.5 0.8645 -65.2479 -7.5 0.8797 -65.187 -7.5 0.8906 -65.1252 -7.5 0.8971 -65.0627 -7.5
+FaultB type area mechanism crustal gmpe 1 vertices 0.44966 -65.38222 0 0.44966 -65.38222 -12  0.44966 -64.61778 -12   0.44966 -64.61778 0 
+FaultC type area mechanism crustal gmpe 1 vertices -0.22483 -65.22484 0 -0.22483 -65.22484 -12 -0.22483 -64.77516 -12  -0.22483 -64.77516 0
+                                                     
+Option 3 - GMPE Library
+Sadigh97 handle Sadigh1997 mechanism strike-slip
+
+Option 4 - GMPE GROUPS
+Sadigh 1997 pointers 1
+
+Option 5 - MAGNITUDE SCALING RELATIONS
+seismicity 1 Criterio III  #SlipRate in mm/year
+Area2  handle truncexp NMmin 0.0395 bvalue 0.9 Mmin 5 Mmax 6.5
+FaultB handle youngscoppersmith sliprate 2 bvalue 0.9 Mmin 5 Mmax 7.00 Mchar 6.75
+FaultC handle youngscoppersmith sliprate 1 bvalue 0.9 Mmin 5 Mmax 6.75 Mchar 6.5
+
+Option 6 - RUPTURE AREA SCALI10G # spacing (km) is the mesh density for areas
+Area2  type circular spacing 15 nref 2 slices 6  RA custom 1 inf 0 taper false
+FaultB type rectangular spacing 0.03 RA custom 1 4 0 aratio 2 taper true 
+FaultC type rectangular spacing 0.03 RA custom 1 4 0 aratio 2 taper true 
+
+
+Option 7 - Pre defined sites (Optional)
+source 760
+site1 0.00000 -65.000 0.0000 # Center of Area 2
+
+Option 8 - Verification Hazard Curve (Optional)
+PGA   0.001 0.01 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.7 0.8 0.9 1
+site1 5.5935587934780E-02 3.8137512243911E-02 1.0709759667697E-02 3.9906127041359E-03 1.7539057675656E-03 8.3040080264206E-04 4.1458506748910E-04 2.1816187463085E-04 1.2095666701592E-04 7.0493741482879E-05 4.2988527813156E-05 2.7283176522785E-05 1.7897042163036E-05 1.2094217444864E-05 5.9160223567757E-06 3.1120173639275E-06 1.7272104370974E-06 9.9989489416730E-07
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

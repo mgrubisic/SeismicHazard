@@ -1,0 +1,61 @@
+#Description: Calculate the hazard for the six sites shown in Figure B.3 due to Fault 3 using the
+#specified NGA-West2 ground-motion models. See Tables B.6 and B.7 for source and site
+#coordinates.
+  
+Option 0 - Global Parameters
+Projection   : WGS84
+Image        : PEER2018Set2_Area2_Faults_B_C.mat
+Boundary     : 
+Layer        : 
+ShearModulus : 3e11      #dyne/cm2
+IM           : 0
+im           : 0.001 0.01 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.7 0.8 0.9 1
+MaxDistance  : 500
+MagDiscrete  : gauss 10
+SimPCE       : 10
+IM1          : 0.01
+IM2          : 0.1 0.2 0.5 1 2
+Spatial      : @none_spatial
+Spectral     : @none_spectral
+
+Option 1 - Logic Tree Weights
+Geom Weight : 1
+Gmpe Weight : 1
+Mscl Weight : 1 
+
+Option 2 - Source Geometry
+geometry 1 Areal Source (Background Seismicity)
+Fault3 type area mechanism crustal gmpe 1 vertices -0.38221 -65 0  -0.38221 -65 -12  0.38221 -65 -12 0.38221 -65 0
+                                                     
+Option 3 - GMPE Library
+BSSA2014 handle BSSA_2014_nga mechanism strike-slip region california BasinDepth unk
+
+Option 4 - GMPE GROUPS
+BSSA2014 pointers 1
+
+Option 5 - MAGNITUDE SCALING RELATIONS
+seismicity 1 TruncExp #SlipRate in mm/year
+Fault3 handle truncexp sliprate 2 bvalue 0.9 Mmin 5 Mmax 7
+#Fault3 handle delta NMmin 1 bvalue 0.9 M 7
+
+Option 6 - RUPTURE AREA SCALING # spacing (km) is the mesh density for areas
+Fault3 type rectangular spacing 0.3 RA custom 1 4 0 aratio 2 taper true 
+
+Option 7 - Pre defined sites (Optional)
+source 760
+site1  0.00000 -64.91005 0.0000
+site2  0.00000 -65.04497 0.0000
+site3  0.00000 -65.08995 0.0000
+site4  0.00000 -65.13490 0.0000
+site5  0.00000 -65.22483 0.0000
+site6 -0.42718 -65.00900 0.0000
+
+Option 8 - Verification Hazard Curve (Optional)
+PGA   1.000E-03 1.000E-02 5.000E-02 1.000E-01 1.500E-01 2.000E-01 2.500E-01 3.000E-01 3.500E-01 4.000E-01 4.500E-01 5.000E-01 5.500E-01 6.000E-01 7.000E-01 8.000E-01 9.000E-01 1.000E+00
+site1 6.893E-02 6.709E-02 4.242E-02 2.339E-02 1.355E-02 8.164E-03 5.082E-03 3.252E-03 2.132E-03 1.428E-03 9.752E-04 6.774E-04 4.779E-04 3.419E-04 1.816E-04 1.008E-04 5.800E-05 3.446E-05
+site2 6.891E-02 6.736E-02 4.632E-02 2.967E-02 2.012E-02 1.410E-02 1.009E-02 7.329E-03 5.394E-03 4.015E-03 3.019E-03 2.292E-03 1.756E-03 1.356E-03 8.268E-04 5.180E-04 3.324E-04 2.179E-04
+site3 6.891E-02 6.709E-02 4.243E-02 2.340E-02 1.356E-02 8.170E-03 5.086E-03 3.254E-03 2.134E-03 1.429E-03 9.759E-04 6.779E-04 4.782E-04 3.421E-04 1.818E-04 1.008E-04 5.805E-05 3.451E-05
+site4 6.893E-02 6.657E-02 3.700E-02 1.708E-02 8.425E-03 4.414E-03 2.433E-03 1.401E-03 8.363E-04 5.153E-04 3.264E-04 2.117E-04 1.403E-04 9.476E-05 4.542E-05 2.303E-05 1.224E-05 6.767E-06
+site5 6.891E-02 6.442E-02 2.558E-02 8.270E-03 3.083E-03 1.290E-03 5.909E-04 2.907E-04 1.515E-04 8.280E-05 4.712E-05 2.775E-05 1.684E-05 1.049E-05 4.352E-06 1.945E-06 9.244E-07 4.625E-07
+site6 6.887E-02 5.584E-02 2.169E-02 1.022E-02 5.707E-03 3.456E-03 2.202E-03 1.454E-03 9.874E-04 6.860E-04 4.859E-04 3.499E-04 2.557E-04 1.893E-04 1.073E-04 6.326E-05 3.854E-05 2.414E-05
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

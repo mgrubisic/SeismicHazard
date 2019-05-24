@@ -1,0 +1,66 @@
+#Purpose: This case is a repeat of Case 2 using a dipping fault (Fault 2). 
+#It tests the calculation of distance to a dipping fault. Single-magnitude
+#event (M 6.0) on Fault 2 with one size rupture plane (smaller than total
+#fault plane area) as defined using the RA, RW, RL and/or aspect ratio relationships
+#given above (#RA = #RL = #RW = 0). Use Sadigh et al. (1997), rock, sigma = 0. 
+#Calculate the hazard for the seven sites shown in Figure 3.1.
+
+Option 0 - Global Parameters
+Projection   : WGS84
+Image        : bayarea.mat
+Boundary     : CAL_adm1.shp
+Layer        : 
+ShearModulus : 3e11      #dyne/cm2
+IM           : 0
+im           : 0.0010000 0.0100000 0.0500000 0.1000000 0.1500000 0.2000000 0.2500000 0.3000000 0.3500000 0.4000000 0.4500000 0.5000000 0.5500000 0.6000000 0.7000000 0.8000000
+MaxDistance  : 500
+MagDiscrete  : gauss 10
+SimPCE       : 10
+IM1          : 0.01
+IM2          : 0.1 0.2 0.5 1 2
+Spatial      : @none_spatial
+Spectral     : @none_spectral
+
+Option 1 - Logic Tree Weights
+Geom Weight : 1
+Gmpe Weight : 1
+Mscl Weight : 1 
+
+Option 2 - Source Geometry
+geometry 1 Strike-Slip Fault
+#S1 type area mechanism crustal gmpe 1 vertices 38  -122  -1 38  -122.057114591  -11.91 38.22485  -122.057114591 -11.91 38.22485  -122 -1
+S1 type area mechanism crustal gmpe 1 vertices 38  -122  -1 38  -122.057124     -12    38.22485  -122.057124    -12    38.22485  -122  -1
+
+Option 3 - GMPE Library
+Sadigh97 handle Sadigh1997 mechanism reverse/thrust sigma overwrite 0
+
+Option 4 - GMPE GROUPS
+Sadigh 1997 pointers 1
+
+Option 5 - MAGNITUDE SCALING RELATIONS
+seismicity 1 Delta  #SlipRate in mm/year
+S1 handle delta sliprate 2 bvalue 0.9 M 6.0
+
+Option 6 - RUPTURE AREA SCALING
+S1 type rectangular spacing 0.05 RA custom 1 4 0 aratio 2 taper true 
+
+Option 7 - Pre defined sites (Optional)
+source 760
+site1 38.1130  -122.000 0.0000 # On Fault Midpoint along Strike  
+site2 38.1130  -122.114 0.0000 # 10km West of fault, at midpoint 
+site3 38.1110  -122.570 0.0000 # 50km West of fault, at midpoint 
+site4 38.0000  -122.000 0.0000 # South end of fault              
+site5 37.9100  -122.000 0.0000 # 10km south of fault along strike
+site6 38.2248  -122.000 0.0000 # North end of fault              
+site7 38.1130  -121.886 0.0000 # 10km East of fault, at midpoint 
+
+Option 8 - Verification Hazard Curve (Optional)
+PGA   0.0010000 0.0100000 0.0500000 0.1000000 0.1500000 0.2000000 0.2500000 0.3000000 0.3500000 0.4000000 0.4500000 0.5000000 0.5500000 0.6000000 0.7000000 0.8000000
+site1 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0136152 0.0100575 0.0070162 0.0043602 0.0000000 0.0000000 0.0000000
+site2 0.0168372 0.0168372 0.0168372 0.0168372 0.0168372 0.0168372 0.0168372 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+site3 0.0168373 0.0168373 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+site4 0.0168377 0.0168377 0.0168377 0.0168377 0.0168377 0.0168377 0.0156594 0.0117748 0.0084055 0.0050827 0.0028819 0.0014891 0.0006418 0.0000000 0.0000000 0.0000000
+site5 0.0168372 0.0168372 0.0168372 0.0168372 0.0123824 0.0052508 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+site6 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0168364 0.0156509 0.0117619 0.0083925 0.0050668 0.0028607 0.0014703 0.0006265 0.0000000 0.0000000 0.0000000
+site7 0.0168367 0.0168367 0.0168367 0.0168367 0.0168367 0.0163090 0.0041784 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+                                                                                                                                                                     
