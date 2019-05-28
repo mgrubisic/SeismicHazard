@@ -15,7 +15,7 @@ T1(and(T1>=0,T1<0.01))=0.01;
 T_min = min(T1, T2); 
 T_max = max(T1, T2); 
 switch param.mechanism
-    case 'interface'
+    case {'interface','grid'}
         V     = interfaceV();
     case 'intraslab'
         V     = intraslabV();
