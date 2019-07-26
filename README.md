@@ -35,7 +35,7 @@ Others
 * recommended: GitHub  
 
 # SOFTWARE DOWNLOAD AND INSTALLATION
-The platform files are organized in a 15-folder structure, which shall be downloaded directly from GitHub at https://github.com/gacandia/SeismicHazard. To run the platform, add the entire folder structure to MATLAB?s path typing the command addpath(genpath(install_dir)) in MATLAB?s workspace, where install_dir is a string containing the full path to the installation directory. To run the platform, type SeismicHazard in MATLAB's workspace. 
+The platform files are organized in a 15-folder structure, which shall be downloaded directly from GitHub at https://github.com/gacandia/SeismicHazard. To run the platform, add the entire folder structure to MATLAB's path typing the command addpath(genpath(install_dir)) in MATLAB's workspace, where install_dir is a string containing the full path to the installation directory. To run the platform, simply type SeismicHazard in MATLAB's workspace. 
 
  
 # USER AGREEMENT
