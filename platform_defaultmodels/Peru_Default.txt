@@ -13,6 +13,8 @@ IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
 Spectral     : @none_spectral
+LiteMode     : off
+Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1
@@ -41,15 +43,15 @@ F17 type area  mechanism intraslab  gmpe 2 vertices   -2.798   -77.716   -200   
 F18 type area  mechanism intraslab  gmpe 2 vertices    -8.12   -75.489   -140    -9.331   -74.417   -150   -8.124  -73.051  -185    -6.771   -74.558   -180                                                                                                                   
 F19 type area  mechanism intraslab  gmpe 2 vertices   -16.07   -70.592   -150     -17.4     -69.8   -140   -18.55   -69.02  -150   -18.155   -68.246   -200    -17.724   -67.398    -250  -13.766    -70.646   -250  -14.405   -71.584     -175                               
 F20 type area  mechanism intraslab  gmpe 2 vertices  -22.999   -65.943   -270   -19.522   -66.254   -270  -17.388  -66.745  -285    -18.55    -69.02   -150     -19.61    -68.56    -155  -21.766    -67.911   -150  -22.999   -67.873     -150                               
-F21 type area  mechanism grid       gmpe 3 vertices   -7.916   -79.173    -30    -7.009   -77.365    -30   -4.449  -78.581   -30    -5.595   -80.368    -30                                                                                                                   
-F22 type area  mechanism grid       gmpe 3 vertices   -7.916   -79.173    -30   -10.464   -77.824    -30  -12.881  -76.318   -30   -13.764   -75.677    -30    -12.807   -74.411     -30  -12.019    -75.315    -30   -8.551   -76.798      -30     -7.009   -77.365       -30
-F23 type area  mechanism grid       gmpe 3 vertices  -13.764   -75.677    -30   -16.383    -73.09    -30  -14.949  -72.106   -30   -13.349   -73.789    -30    -12.807   -74.411     -30                                                                                      
-F24 type area  mechanism grid       gmpe 3 vertices  -16.383    -73.09    -30   -18.096   -70.517    -30  -18.564    -69.9   -30   -17.909   -69.174    -30    -15.743   -70.484     -30  -14.949    -72.106    -30                                                                 
-F25 type area  mechanism grid       gmpe 3 vertices   -0.036   -79.367    -30    -2.408   -79.083    -30   -1.595  -77.139   -30     1.211   -76.797    -30       1.73   -77.897     -30                                                                                            
-F26 type area  mechanism grid       gmpe 3 vertices   -2.408   -79.083    -30    -4.449   -78.581    -30   -5.348  -78.152   -30    -4.598   -76.293    -30     -3.088   -76.661     -30   -1.595    -77.139    -30                                                                
-F27 type area  mechanism grid       gmpe 3 vertices   -5.348   -78.152    -30    -7.009   -77.365    -30   -8.551  -76.798   -30    -7.359   -75.145    -30     -6.292    -75.43     -30    -4.61    -76.304    -30                                                                
-F28 type area  mechanism grid       gmpe 3 vertices   -8.551   -76.798    -30   -12.019   -75.315    -30  -13.349  -73.789   -30   -11.656   -72.276    -30    -10.523   -73.668     -30   -8.744    -74.957    -30   -7.359   -75.145      -30                                    
-F29 type area  mechanism grid       gmpe 3 vertices  -13.349   -73.789    -30   -14.949   -72.106    -30  -15.743  -70.484   -30   -12.956   -69.414    -30    -11.656   -72.276     -30                                                                                                         
+F21 type area  mechanism crustal    gmpe 3 vertices   -7.916   -79.173    -30    -7.009   -77.365    -30   -4.449  -78.581   -30    -5.595   -80.368    -30                                                                                                                   
+F22 type area  mechanism crustal    gmpe 3 vertices   -7.916   -79.173    -30   -10.464   -77.824    -30  -12.881  -76.318   -30   -13.764   -75.677    -30    -12.807   -74.411     -30  -12.019    -75.315    -30   -8.551   -76.798      -30     -7.009   -77.365       -30
+F23 type area  mechanism crustal    gmpe 3 vertices  -13.764   -75.677    -30   -16.383    -73.09    -30  -14.949  -72.106   -30   -13.349   -73.789    -30    -12.807   -74.411     -30                                                                                      
+F24 type area  mechanism crustal    gmpe 3 vertices  -16.383    -73.09    -30   -18.096   -70.517    -30  -18.564    -69.9   -30   -17.909   -69.174    -30    -15.743   -70.484     -30  -14.949    -72.106    -30                                                                 
+F25 type area  mechanism crustal    gmpe 3 vertices   -0.036   -79.367    -30    -2.408   -79.083    -30   -1.595  -77.139   -30     1.211   -76.797    -30       1.73   -77.897     -30                                                                                            
+F26 type area  mechanism crustal    gmpe 3 vertices   -2.408   -79.083    -30    -4.449   -78.581    -30   -5.348  -78.152   -30    -4.598   -76.293    -30     -3.088   -76.661     -30   -1.595    -77.139    -30                                                                
+F27 type area  mechanism crustal    gmpe 3 vertices   -5.348   -78.152    -30    -7.009   -77.365    -30   -8.551  -76.798   -30    -7.359   -75.145    -30     -6.292    -75.43     -30    -4.61    -76.304    -30                                                                
+F28 type area  mechanism crustal    gmpe 3 vertices   -8.551   -76.798    -30   -12.019   -75.315    -30  -13.349  -73.789   -30   -11.656   -72.276    -30    -10.523   -73.668     -30   -8.744    -74.957    -30   -7.359   -75.145      -30                                    
+F29 type area  mechanism crustal    gmpe 3 vertices  -13.349   -73.789    -30   -14.949   -72.106    -30  -15.743  -70.484   -30   -12.956   -69.414    -30    -11.656   -72.276     -30                                                                                                         
 
 Option 3 - GMPE Library
 at1  handle Youngs1997 mechanism interface

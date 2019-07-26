@@ -20,6 +20,8 @@ IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
 Spectral     : @none_spectral
+LiteMode     : off
+Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1
@@ -28,7 +30,7 @@ Mscl Weight : 1
 
 Option 2 - Source Geometry
 geometry 1 Strike-Slip Fault
-S1 type area mechanism crustal gmpe 1 vertices 38  -122  -1 38  -122.057114591  -11.91 38.22485  -122.057114591 -11.91 38.22485  -122 -1
+S1 type area mechanism shallowcrustal gmpe 1 vertices 38  -122  -1 38  -122.057114591  -11.91 38.22485  -122.057114591 -11.91 38.22485  -122 -1
 
 Option 3 - GMPE Library
 AbrahamsonSilva1997 handle AS1997h mechanism reverse sig arbitrary sigma overwrite 0

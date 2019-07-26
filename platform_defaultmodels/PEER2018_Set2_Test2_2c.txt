@@ -17,6 +17,8 @@ IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
 Spectral     : @none_spectral
+LiteMode     : off
+Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1
@@ -25,7 +27,7 @@ Mscl Weight : 1
 
 Option 2 - Source Geometry
 geometry 1 Areal Source (Background Seismicity)
-Fault3 type area mechanism crustal gmpe 1 surface 1020 vertices -0.38221 -65 0  -0.38221 -65 -12  0.38221 -65 -12 0.38221 -65 0
+Fault3 type area mechanism shallowcrustal gmpe 1 surface 1020 vertices -0.38221 -65 0  -0.38221 -65 -12  0.38221 -65 -12 0.38221 -65 0
                                                      
 Option 3 - GMPE Library
 CB2014   handle CB_2014_nga mechanism strike-slip HW exclude Z25 0.607 region california

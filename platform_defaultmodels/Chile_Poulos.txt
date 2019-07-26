@@ -13,6 +13,8 @@ IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
 Spectral     : @none_spectral
+LiteMode     : off
+Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1

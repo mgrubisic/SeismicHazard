@@ -16,7 +16,10 @@ form1 = double(imread('form1.jpg'))/255;
 form2 = double(imread('form2.jpg'))/255;
 die   = double(imread('die.jpg'))/255;
 Undock = double(imread('Undock.jpg'))/255;
-save PSHAbuttons exitmat Rulermat Scalemat Refreshmat Engine Leg Limits form1 form2 die Refresh2 plus Undock
+Play   = double(imread('Play.jpg'))/255;
+MagicWand = double(imresize(imread('MagicWand.jpg'),[16 16]))/255;
+Legend = double(imread('Legend.jpg'))/255;
+save PSHAbuttons exitmat Rulermat Scalemat Refreshmat Engine Leg Limits form1 form2 die Refresh2 plus Undock Play MagicWand Legend
 
 %% scenarios
 Undockbutton = double(imread('Undock.jpg'))/255;

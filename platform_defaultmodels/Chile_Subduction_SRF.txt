@@ -13,6 +13,8 @@ IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
 Spectral     : @none_spectral
+LiteMode     : off
+Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1
@@ -60,8 +62,8 @@ S36  type area mechanism intraslab gmpe 2 vertices -34.50  -71.25  -88.41  -34.5
 S37  type area mechanism intraslab gmpe 2 vertices -35.50  -71.25  -115.51 -35.50  -69.50  -201.46 -34.50  -69.50  -201.46 -34.50  -71.25  -115.51
 S38  type area mechanism intraslab gmpe 2 vertices -36.50  -71.50  -128.77 -36.50  -70.25  -190.65 -35.50  -70.25  -190.65 -35.50  -71.50  -128.77
 S39  type area mechanism intraslab gmpe 2 vertices -37.50  -72.00  -128.76 -37.50  -71.00  -178.26 -36.50  -71.00  -178.26 -36.50  -72.00  -128.76
-SRF1 type area mechanism crustal   gmpe 3 vertices -33.61  -70.53   0.000  -33.61  -70.47  -14.20 -33.36  -70.47  -14.200 -33.36  -70.53  0.000
-SRF2 type area mechanism crustal   gmpe 3 vertices -33.61  -70.53   0.000  -33.61  -70.39  -7.6   -33.36  -70.39  -7.6 -33.36  -70.53  0.000
+SRF1 type area mechanism shallowcrustal   gmpe 3 vertices -33.61  -70.53   0.000  -33.61  -70.47  -14.20 -33.36  -70.47  -14.200 -33.36  -70.53  0.000
+SRF2 type area mechanism shallowcrustal   gmpe 3 vertices -33.61  -70.53   0.000  -33.61  -70.39  -7.6   -33.36  -70.39  -7.6 -33.36  -70.53  0.000
 
 Option 3 - GMPE Library
 at1  handle Youngs1997 mechanism interface

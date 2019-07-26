@@ -234,6 +234,18 @@ model = process_model(sys,opt);
 D=what('platform_defaultmodels'); save([D.path,'\',matfile{1}],'model','h','sys','opt');
 
 %% CHILE, PERU
+inputfile = 'MexicoCity_CU_PreviousTectonic_2018_f2.txt';
+matfile=regexp(inputfile,'\.txt','split');
+[sys,opt,h]= loadPSHA(inputfile); %#ok<*ASGLU>
+model = process_model(sys,opt);
+D=what('platform_defaultmodels'); save([D.path,'\',matfile{1}],'model','h','sys','opt');
+
+inputfile = 'Mexico_Default_not_CU.txt';
+matfile=regexp(inputfile,'\.txt','split');
+[sys,opt,h]= loadPSHA(inputfile); %#ok<*ASGLU>
+model = process_model(sys,opt);
+D=what('platform_defaultmodels'); save([D.path,'\',matfile{1}],'model','h','sys','opt');
+
 inputfile = 'Chile_Default.txt';
 matfile=regexp(inputfile,'\.txt','split');
 [sys,opt,h]= loadPSHA(inputfile); %#ok<*ASGLU>
