@@ -1,6 +1,6 @@
 Matlab GUI for Seismic Hazard Assessment
 
-## AUTHORS ##
+# AUTHORS #
 Gabriel Candia, Ph.D; Jorge Macedo, Ph.D.; Miguel A. Jaimes, Ph.D.; Carolina Magna-Verdugo, Ph.D.
 
 # FUNDING INSTITUTIONS
@@ -19,7 +19,9 @@ RAM
 
 * minimum of 4 GB  
 * recommended 8 GB  
-* MATLAB  
+
+MATLAB  
+
 * standard or network license  
 * R2018a or Higher  
 * mapping Toolbox  
