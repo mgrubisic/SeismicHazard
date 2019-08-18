@@ -8,9 +8,9 @@ function [lnSa, sigma] = Campbell1997h(T,M, R, media, mechanism, D, sig)
 if T<0.05 || T> 4
     lnSa  = nan(size(M));
     sigma = nan(size(M));
-    IM    = IM2str(T);
-    h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
-    uiwait(h);
+    %IM    = IM2str(T);
+    %h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
+    %uiwait(h);
     return
 end
 

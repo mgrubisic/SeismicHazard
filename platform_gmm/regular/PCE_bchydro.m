@@ -5,9 +5,9 @@ function [lnY,sigma] = PCE_bchydro(To,M,Rrup,h,mechanism,region,DeltaC1,Vs30)
 if  To<0 || To> 10
     lnY   = nan(size(M));
     sigma = nan(size(M));
-    IM    = IM2str(To);
-    h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
-    uiwait(h);
+    %IM    = IM2str(To);
+    %h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
+    %uiwait(h);
     return
 end
 

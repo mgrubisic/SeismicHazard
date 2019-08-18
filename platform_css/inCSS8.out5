@@ -1,0 +1,40 @@
+   78     nPeriod
+    8  nHazLevels
+   35       Unique nTH Used
+ 1.000  Ref Period
+       Index       RSN                            AccFilename_H1                          AccFilename_H2                           AccFilename_V
+           1        39  20150921-195603-R21M-HNE.txt            20150921-195603-R21M-HNN.txt            20150921-195603-R21M-HNZ.txt            
+           2       331  20150921-173948-C10O-HNE.txt            20150921-173948-C10O-HNN.txt            20150921-173948-C10O-HNZ.txt            
+           3       334  20150921-173951-C18O-HNE.txt            20150921-173951-C18O-HNN.txt            20150921-173951-C18O-HNZ.txt            
+           4       342  20150921-173957-R14M-HNE.txt            20150921-173957-R14M-HNN.txt            20150921-173957-R14M-HNZ.txt            
+           5       491  20170424-213820-FAR1-HNE.txt            20170424-213820-FAR1-HNN.txt            20170424-213820-FAR1-HNZ.txt            
+           6       541  20120325-223705-ROC1-HNE.txt            20120325-223705-ROC1-HNN.txt            20120325-223705-ROC1-HNZ.txt            
+           7       557  20140403-024229-T05A-HNE.txt            20140403-024229-T05A-HNN.txt            20140403-024229-T05A-HNZ.txt            
+           8       598  20151005-163237-C10O-HNE.txt            20151005-163237-C10O-HNN.txt            20151005-163237-C10O-HNZ.txt            
+           9       600  20151005-163237-C22O-HNE.txt            20151005-163237-C22O-HNN.txt            20151005-163237-C22O-HNZ.txt            
+          10       602  20151005-163238-C06O-HNE.txt            20151005-163238-C06O-HNN.txt            20151005-163238-C06O-HNZ.txt            
+          11       603  20151005-163238-C33O-HNE.txt            20151005-163238-C33O-HNN.txt            20151005-163238-C33O-HNZ.txt            
+          12       635  20151003-062606-C10O-HNE.txt            20151003-062606-C10O-HNN.txt            20151003-062606-C10O-HNZ.txt            
+          13       825  20150917-041035-R05M-HNE.txt            20150917-041035-R05M-HNN.txt            20150917-041035-R05M-HNZ.txt            
+          14       897  20151107-073141-A25C-HNE.txt            20151107-073141-A25C-HNN.txt            20151107-073141-A25C-HNZ.txt            
+          15       908  20151107-073152-A09C-HNE.txt            20151107-073152-A09C-HNN.txt            20151107-073152-A09C-HNZ.txt            
+          16       912  20151107-073203-R20M-HNE.txt            20151107-073203-R20M-HNN.txt            20151107-073203-R20M-HNZ.txt            
+          17      1111  20151121-230528-CO06-HNE.txt            20151121-230528-CO06-HNN.txt            20151121-230528-CO06-HNZ.txt            
+          18      1239  20150926-025137-R21M-HNE.txt            20150926-025137-R21M-HNN.txt            20150926-025137-R21M-HNZ.txt            
+          19      1343  20150916-231607-ROC1-HNE.txt            20150916-231607-ROC1-HNN.txt            20150916-231607-ROC1-HNZ.txt            
+          20      1358  20140823-223140-R17M-HNE.txt            20140823-223140-R17M-HNN.txt            20140823-223140-R17M-HNZ.txt            
+          21      1368  20140823-223145-R04M-HNE.txt            20140823-223145-R04M-HNN.txt            20140823-223145-R04M-HNZ.txt            
+          22      1372  20140823-223222-ROC1-HNE.txt            20140823-223222-ROC1-HNN.txt            20140823-223222-ROC1-HNZ.txt            
+          23      1602  20150916-231802-C11O-HNE.txt            20150916-231802-C11O-HNN.txt            20150916-231802-C11O-HNZ.txt            
+          24      1604  20150916-231809-C10O-HNE.txt            20150916-231809-C10O-HNN.txt            20150916-231809-C10O-HNZ.txt            
+          25      1624  20150916-231834-ROC1-HNE.txt            20150916-231834-ROC1-HNN.txt            20150916-231834-ROC1-HNZ.txt            
+          26      1632  20150916-231841-R14M-HNE.txt            20150916-231841-R14M-HNN.txt            20150916-231841-R14M-HNZ.txt            
+          27      1636  20150916-231854-C27O-HNE.txt            20150916-231854-C27O-HNN.txt            20150916-231854-C27O-HNZ.txt            
+          28      1910  20150917-014104-GO04-HNE.txt            20150917-014104-GO04-HNN.txt            20150917-014104-GO04-HNZ.txt            
+          29      1938  20140411-000108-T08A-HNE.txt            20140411-000108-T08A-HNN.txt            20140411-000108-T08A-HNZ.txt            
+          30      1948  Illapel-850303-X.txt                    Illapel-850303-Y.txt                    Illapel-850303-Z.txt                    
+          31      1956  SanFernando-850303-X.txt                SanFernando-850303-Y.txt                SanFernando-850303-Z.txt                
+          32      1958  SantiagoEndesa-850303-X.txt             SantiagoEndesa-850303-Y.txt             SantiagoEndesa-850303-Z.txt             
+          33      1977  20071114-000001-PISAGUASMA-EW.txt       20071114-000001-PISAGUASMA-NS.txt       20071114-000001-PISAGUASMA-V.txt        
+          34      1985  SantiagoCentro-850409-X.txt             SantiagoCentro-850409-Y.txt             SantiagoCentro-850409-Z.txt             
+          35      2039  20071213-000001-MEJILLONESPUERTO-EW.txt 20071213-000001-MEJILLONESPUERTO-NS.txt 20071213-000001-MEJILLONESPUERTO-V.txt  

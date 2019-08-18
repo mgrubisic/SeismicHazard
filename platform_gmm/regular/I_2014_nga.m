@@ -5,9 +5,9 @@ if T<0 || T> 10
     sigma = nan(size(M));
     tau   = nan(size(M));
     sig   = nan(size(M));
-    IM    = IM2str(T);
-    h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
-    uiwait(h);
+    %IM    = IM2str(T);
+    %h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
+    %uiwait(h);
     return
 end
 

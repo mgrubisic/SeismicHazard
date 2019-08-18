@@ -14,9 +14,9 @@ if  To<0 || To> 1/0.33
     sigma = nan(size(M));
     tau   = nan(size(M));
     sig   = nan(size(M));
-    IM    = IM2str(To);
-    h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
-    uiwait(h);
+    %IM    = IM2str(To);
+    %h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
+    %uiwait(h);
     return
 end
 
