@@ -176,7 +176,7 @@ if Vs30~=Vref || To~=0
     ln_Fnlin=f1+f2*log((exp(lnPGA_r)+f3)/f3);
     
     % Effect of basin depth
-    if ~strcmp(z1,'unk')
+    if not(ischar(z1) || z1==999)
         if region == 1  % if in California
             mu_z1=exp(-7.15/4*log((Vs30^4+570.94^4)/(1360^4+570.94^4)))/1000;
         else
@@ -191,7 +191,7 @@ if Vs30~=Vref || To~=0
         dz1=0;
     end
     
-    if ~strcmp(z1,'unk')
+    if not(ischar(z1) || z1==999)
         if To <0.65
             F_dz1=0;
         elseif To >= 0.65 && abs(dz1) <= f7/f6
@@ -233,6 +233,7 @@ phi_M(ind3) = phi2*on(ind3);
 ind2   = and(R1 < rjb,rjb <= R2);
 ind3   = (rjb>R2);
 dr2    = dphiR*(log(rjb/R1)/log(R2/R1));
+dr2(rjb==0)=0;
 phi_MR = phi_M+dr2.*ind2+dphiR*ind3;
 
 if Vs30 >= V2

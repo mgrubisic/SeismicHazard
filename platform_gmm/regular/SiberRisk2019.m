@@ -13,9 +13,6 @@ if  and(To<0 || To> 10,To~=-1)
     sigma = nan(size(M));
     tau   = nan(size(M));
     phi   = nan(size(M));
-    %IM    = IM2str(To);
-    %h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
-    %uiwait(h);
     return
 end
 
@@ -43,6 +40,12 @@ else
     phi        = sqrt(sigma.^2-tau.^2);
 end
 
+% Careful here. PGV model was developed in 'm/s', this next lines convert
+% PGV to cm/s
+if index==1
+    lny = lny+log(100);
+end
+
 
 
 function [lny,sigma,tau,phi] = gmpe(index,M,R,h,mechanism,Vs30)
@@ -58,7 +61,11 @@ lny       = nan(size(M));
 sigma     = nan(size(M));
 tau       = nan(size(M));
 phi       = nan(size(M));
-x         = [M,R,Vs30*ones(size(M))];
+if numel(Vs30)==1
+    x         = [M,R,Vs30*ones(size(M))];
+else
+    x         = [M,R,Vs30];
+end
 [lny( ind),sigma( ind),tau( ind),phi( ind)] = intermbin1(index,x( ind,:));
 [lny(~ind),sigma(~ind),tau(~ind),phi(~ind)] = intermbin2(index,x(~ind,:));
 
@@ -455,14 +462,6 @@ sigma = sqrt(phi.^2+tau.^2);
 
 function[lny] = intraPGARock(coef,x)
 
-% Montalva, G., Bastias, N., Rodriguez-Marek, A. (2016) Ground Motion
-% Prediction Equation for the Chilean Subduction Zone. Bulletin of the
-% Seismological Society of America April 2017 vol. 107 no. 2 901-911
-% Includes correction (erratum)
-% Erratum to Ground-Motion Prediction Equation for the Chilean Subduction
-% Zone. Bulletin of the Seismological Society of America, Vol. 107, No. 5,
-% pp. 2541–2541, October 2017, doi: 10.1785/0120170189
-%
 % To        = spectral period
 % M         = moment magnitude
 % rrup      = closest distance to fault rupture

@@ -1,10 +1,11 @@
-function [lny,sigma,tau,phi] = Macedo2019(T,M,func,mechanism,un,varargin)
+function [lny,sigma,tau,phi] = Macedo2019(T,M,Rrup,func,mechanism,saunits,Vs30,varargin)
 
 % M         = Moment magnitude
 % func      = function handle to Sa model
 % mechanism = 1 for interface earthquakes
 %             2 for intraslab earthquakes
 % un        = units of IM
+% Vs30      = Avg. Shear wave velocity
 % varargin  = input parameters that follow T in the matlab function that
 %              runs the Sa GMPE
 
@@ -20,7 +21,7 @@ if T~=-5
 end
 
 switch mechanism
-    case 1 %interface
+    case 'interface'
         % south america
         c1 = 0.95;
         c2 =-0.36;
@@ -36,7 +37,7 @@ switch mechanism
         phi = 0.30;
         tau = 0.19;
       
-    case 2 %intraslab
+    case 'intraslab'
         c1 =-0.75;
         c2 =-0.24;
         c3 = 0.66;
@@ -49,19 +50,33 @@ switch mechanism
         s4 = 0.230;        
         
         phi = 0.30;
-        tau = 0.14;        
+        tau = 0.14;    
+        
+    otherwise %temporary code used, we need shallow crustal coefficients or migrate to another GMM
+        c1 = 0.95;
+        c2 =-0.36;
+        c3 = 0.53;
+        c4 = 1.54;
+        c5 = 0.17;
+        
+        s1 = 0.130;
+        s2 = 2.370;
+        s3 = 0.030;
+        s4 = 0.270;
+        
+        phi = 0.30;
+        tau = 0.19;        
+        
 end
 
 [lnPGA,sPGA]  = func(0,varargin{:}); % evaluates GMM for PGA
 [lnSa1,sSa1]  = func(1,varargin{:}); % evaluates GMM for Sa(T=1)
 
 % correct for units
-lnPGA  = lnPGA - log(un);
-lnSa1  = lnSa1 - log(un);
-
-% extracts Vs30
-Vs30 = varargin{6};
+lnPGA  = lnPGA - log(saunits);
+lnSa1  = lnSa1 - log(saunits);
 
 % evaluates conditional GMM
 lny   = c1+c2*log(Vs30)+c3*M+c4*lnPGA+c5*lnSa1;
 sigma = sqrt(s1+s2*sPGA.^2+s3*sSa1.^2+s4*sPGA.*sSa1);
+

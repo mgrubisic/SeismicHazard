@@ -24,6 +24,7 @@ if group ==1
     i=i+1; ME(i).label = 'Jaimes et al. 2015';           ME(i).func = @Jaimes2015;                 ME(i).type='regular';  ME(i).ref='https://doi.org/10.1080/13632469.2015.1025926';
     i=i+1; ME(i).label = 'Jaimes et al. 2016';           ME(i).func = @Jaimes2016;                 ME(i).type='regular';  ME(i).ref='https://doi.org/10.1785/0120150283';
     i=i+1; ME(i).label = 'Garcia-Soto Jaimes 2017';      ME(i).func = @GarciaJaimes2017;           ME(i).type='regular';  ME(i).ref='https://doi.org/10.1785/0120160273';
+    i=i+1; ME(i).label = 'Bernal et al. 2014';           ME(i).func = @Bernal2014;                 ME(i).type='regular';  ME(i).ref='https://doi.org/10.13140/2.1.2693.6641';
     i=i+1; ME(i).label = 'Sadigh et al. 1997';           ME(i).func = @Sadigh1997;                 ME(i).type='regular';  ME(i).ref='https://doi.org/10.1785/gssrl.68.1.180';
     i=i+1; ME(i).label = 'Idriss 2008 - NGA';            ME(i).func = @Idriss2008_nga;             ME(i).type='regular';  ME(i).ref='https://doi.org/10.1193/1.2924362';
     i=i+1; ME(i).label = 'Chiou Youngs 2008 - NGA';      ME(i).func = @ChiouYoungs2008_nga;        ME(i).type='regular';  ME(i).ref='https://doi.org/10.1193/1.2894832';
@@ -41,8 +42,9 @@ if group ==1
     i=i+1; ME(i).label = 'Conditional PGV (CM2019)';     ME(i).func = @condPGV;                    ME(i).type='cond';     ME(i).ref='www.google.com';
     i=i+1; ME(i).label = 'Conditional Ia (Macedo2019)';  ME(i).func = @Macedo2019;                 ME(i).type='cond';     ME(i).ref='www.google.com';
     i=i+1; ME(i).label = 'User Defined Model';           ME(i).func = @udm;                        ME(i).type='udm';      ME(i).ref='www.google.com';
-    i=i+1; ME(i).label = 'PCE NGA West2';                ME(i).func = @PCE_ngawest2;               ME(i).type='pce';      ME(i).ref='www.google.com';
+    i=i+1; ME(i).label = 'PCE NGA';                      ME(i).func = @PCE_nga;                    ME(i).type='pce';      ME(i).ref='www.google.com';
     i=i+1; ME(i).label = 'PCE BCHydro';                  ME(i).func = @PCE_bchydro;                ME(i).type='pce';      ME(i).ref='www.google.com';
+    i=i+1; ME(i).label = 'Franky';                       ME(i).func = @franky;                     ME(i).type='frn';      ME(i).ref='www.google.com';
 end
 
 % magnitude scaling models
@@ -88,24 +90,33 @@ end
 if group == 5
     ME(1:11,1)=struct('label',[],'str',[],'isregular',[],'func',[],'integrator',[],'primaryIM',[],'Safactor',[],'ref',[]);
     i=0;
-    i=i+1;ME(i).label = 'BMT 2017 Sa(M)';      ME(i).func = @psda_BMT2017M;     ME(i).integrator=1;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1061/(ASCE)GT.1943-5606.0001833';     
-    i=i+1;ME(i).label = 'BT 2007 Sa(M)';       ME(i).func = @psda_BT2007M;      ME(i).integrator=1;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1061/(ASCE)1090-0241(2007)133:4(381)';
-    i=i+1;ME(i).label = 'Jibson  2007 (M)';    ME(i).func = @psda_J07M;         ME(i).integrator=1;  ME(i).primaryIM='PGA';           ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    i=i+1;ME(i).label = 'RS 2009 (M)';         ME(i).func = @psda_RS09M;        ME(i).integrator=1;  ME(i).primaryIM='PGA';           ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    i=i+1;ME(i).label = 'BM 2019 NonNF (M)';   ME(i).func = @psda_BM2019M;      ME(i).integrator=1;  ME(i).primaryIM='Sa(1.3Ts)';     ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    i=i+1;ME(i).label = 'BT 2007 Sa';          ME(i).func = @psda_BT2007;       ME(i).integrator=2;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1061/(ASCE)1090-0241(2007)133:4(381)';
-    i=i+1;ME(i).label = 'AM 1988';             ME(i).func = @psda_AM1988;       ME(i).integrator=2;  ME(i).primaryIM='PGA';           ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1002/eqe.4290160704';                 
-    i=i+1;ME(i).label = 'Jibson  2007 Ia';     ME(i).func = @psda_J07;          ME(i).integrator=2;  ME(i).primaryIM='Ia';            ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    i=i+1;ME(i).label = 'Rathje Rigid';        ME(i).func = @psda_RathjeR;      ME(i).integrator=3;  ME(i).primaryIM='PGV-PGA';       ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    i=i+1;ME(i).label = 'Rathje Flexible';     ME(i).func = @psda_RathjeF;      ME(i).integrator=4;  ME(i).primaryIM='PGV-PGA';       ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    %i=i+1;ME(i).label = 'BM 2019 NF';         ME(i).func = @psda_BM2019_NF;    ME(i).integrator=6;  ME(i).primaryIM='PGV-Sa(1.3Ts)'; ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';                                  
-    i=i+1;ME(i).label = 'BT 2007 (PCE)';       ME(i).func = @psda_BT2007_pce;   ME(i).integrator=5;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=false; ME(i).ref = 'http://www.google.com';                                                                                                              
-
+    % subduction
+    i=i+1;ME(i).label = 'BMT 2017 Sa(M)';      ME(i).func = @psda_BMT2017M;     ME(i).mechanism = 'subduction'; ME(i).integrator=1;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1061/(ASCE)GT.1943-5606.0001833';
+    i=i+1;ME(i).label = 'BMT 2017 (PCE-M)';    ME(i).func = @psda_BMT2017_cdmM; ME(i).mechanism = 'subduction'; ME(i).integrator=6;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=false; ME(i).ref = 'https://doi.org/10.1061/(ASCE)GT.1943-5606.0001833';
+    
+    % shallow crustal (bray et al)
+    i=i+1;ME(i).label = 'BT 2007 Sa';          ME(i).func = @psda_BT2007;       ME(i).mechanism = 'crustal'; ME(i).integrator=2;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1061/(ASCE)1090-0241(2007)133:4(381)';
+    i=i+1;ME(i).label = 'BT 2007 Sa(M)';       ME(i).func = @psda_BT2007M;      ME(i).mechanism = 'crustal'; ME(i).integrator=1;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1061/(ASCE)1090-0241(2007)133:4(381)';
+    i=i+1;ME(i).label = 'BT 2007 (PCE)';       ME(i).func = @psda_BT2007_cdm;   ME(i).mechanism = 'crustal'; ME(i).integrator=5;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=false; ME(i).ref = 'https://doi.org/10.1061/(ASCE)1090-0241(2007)133:4(381)';
+    i=i+1;ME(i).label = 'BT 2007 (PCE-M)';     ME(i).func = @psda_BT2007_cdmM;  ME(i).mechanism = 'crustal'; ME(i).integrator=6;  ME(i).primaryIM='Sa(1.5Ts)';     ME(i).isregular=false; ME(i).ref = 'https://doi.org/10.1061/(ASCE)1090-0241(2007)133:4(381)';
+    i=i+1;ME(i).label = 'BM 2019 NonNF (M)';   ME(i).func = @psda_BM2019M;      ME(i).mechanism = 'crustal'; ME(i).integrator=1;  ME(i).primaryIM='Sa(1.3Ts)';     ME(i).isregular=true;  ME(i).ref = 'https://www.ce.berkeley.edu/people/faculty/bray/research';
+    %i=i+1;ME(i).label = 'BM 2019 NF';         ME(i).func = @psda_BM2019_NF;    ME(i).integrator=7;  ME(i).primaryIM='PGV-Sa(1.3Ts)'; ME(i).isregular=true;  ME(i).ref = 'http://www.google.com';
+    
+    % shallow crustal (other)
+    i=i+1;ME(i).label = 'Jibson  2007 (M)';    ME(i).func = @psda_J07M;         ME(i).mechanism = 'crustal'; ME(i).integrator=1;  ME(i).primaryIM='PGA';           ME(i).isregular=true;  ME(i).ref = 'https://www.sciencedirect.com/science/article/pii/S0013795207000300?via%3Dihub';
+    i=i+1;ME(i).label = 'Jibson  2007 Ia';     ME(i).func = @psda_J07Ia;        ME(i).mechanism = 'crustal'; ME(i).integrator=2;  ME(i).primaryIM='Ia';            ME(i).isregular=true;  ME(i).ref = 'https://www.sciencedirect.com/science/article/pii/S0013795207000300?via%3Dihub';
+    i=i+1;ME(i).label = 'RA 2011 (Rigid)';     ME(i).func = @psda_RA2011R;      ME(i).mechanism = 'crustal'; ME(i).integrator=3;  ME(i).primaryIM='PGV-PGA';       ME(i).isregular=true;  ME(i).ref = 'https://www.sciencedirect.com/science/article/pii/S0013795210002553';
+    i=i+1;ME(i).label = 'RA 2011 (Flexible)';  ME(i).func = @psda_RA2011F;      ME(i).mechanism = 'crustal'; ME(i).integrator=4;  ME(i).primaryIM='PGV-PGA';       ME(i).isregular=true;  ME(i).ref = 'https://www.sciencedirect.com/science/article/pii/S0013795210002553';
+    i=i+1;ME(i).label = 'RS 2009 (Scalar-M)';  ME(i).func = @psda_RS09M;        ME(i).mechanism = 'crustal'; ME(i).integrator=1;  ME(i).primaryIM='PGA';           ME(i).isregular=true;  ME(i).ref = 'http://www.nzsee.org.nz/db/Bulletin/Archive/42(1)0018.pdf';
+    i=i+1;ME(i).label = 'RS 2009 (Vector)';    ME(i).func = @psda_RS09V;        ME(i).mechanism = 'crustal'; ME(i).integrator=4;  ME(i).primaryIM='PGV-PGA';       ME(i).isregular=true;  ME(i).ref = 'http://www.nzsee.org.nz/db/Bulletin/Archive/42(1)0018.pdf';    
+    i=i+1;ME(i).label = 'AM 1988';             ME(i).func = @psda_AM1988;       ME(i).mechanism = 'crustal'; ME(i).integrator=2;  ME(i).primaryIM='PGA';           ME(i).isregular=true;  ME(i).ref = 'https://doi.org/10.1002/eqe.4290160704';
+    
+    
     for j=1:length(ME)
-       ME(j).Safactor=str2IM(regexp(ME(j).primaryIM,'\-','split'));
-       ME(j).Safactor=ME(j).Safactor(:)';
+        ME(j).Safactor=str2IM(regexp(ME(j).primaryIM,'\-','split'));
+        ME(j).Safactor=ME(j).Safactor(:)';
     end
-
+    
 end
 
 for i=1:length(ME)

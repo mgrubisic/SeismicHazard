@@ -185,7 +185,7 @@ PGA1000 = exp(ln_Sa);
 
 % Now, with the PGA1000 obtained, recalculate f_site and Sa for all periods
 if Vs30  >   V_lin
-    f_site = (theta12 .* log(Vs./V_lin) + b .* n .* log(Vs./V_lin))*ones(size(M));
+    f_site = (theta12 .* log(Vs./V_lin) + b .* n .* log(Vs./V_lin)).*ones(size(M));
 else
     f_site = theta12 .* log(Vs./V_lin) - b .* log(PGA1000 + cc) + b .* log(PGA1000 + cc .* ((Vs./V_lin) .^ n));
 end

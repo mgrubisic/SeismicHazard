@@ -15,7 +15,7 @@ IM           : 0
 im           : 0.001 0.01 0.05 0.1 0.15 0.2 0.25 0.3 0.35063 0.4 0.45 0.5 0.55 0.6 0.65
 MaxDistance  : 500
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
@@ -25,7 +25,7 @@ Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1
-Gmpe Weight : 1/6 1/6 1/6 1/6 1/6 1/6
+Gmpe Weight : 1/5 1/5 1/5 1/5 1/5
 Mscl Weight : 1 
 
 Option 2 - Source Geometry
@@ -33,7 +33,6 @@ geometry 1 Reverse Fault
 S1 type area mechanism shallowcrustal gmpe 1 vertices 38.00000 -122 0   38.00000 -122 -12    38.22480 -122 -12    38.22480 -122 0
 
 Option 3 - GMPE Library
-Sadigh97   handle Sadigh1997    mechanism reverse/thrust
 ASK2014    handle ASK_2014_nga  mechanism reverse event mainshock Z10 unk Vs30type measured region global   
 BSSA2014   handle BSSA_2014_nga mechanism reverse region global BasinDepth unk
 CB2014     handle CB_2014_nga   mechanism reverse HW include Z25 5 region global
@@ -41,12 +40,11 @@ CY2014     handle CY_2014_nga   mechanism reverse Z10 unk Vs30type measured regi
 I2014      handle I_2014_nga    mechanism reverse
 
 Option 4 - GMPE GROUPS
-Sadigh97       pointers 1
-AS2014_NGAW2   pointers 2
-BA2014_NGAW2   pointers 3
-CB2014_NGAW2   pointers 4
-CY2014_NGAW2   pointers 5
-I2014_NGAW2    pointers 6
+AS2014_NGAW2   pointers 1
+BA2014_NGAW2   pointers 2
+CB2014_NGAW2   pointers 3 
+CY2014_NGAW2   pointers 4 
+I2014_NGAW2    pointers 5 
 
 Option 5 - MAGNITUDE SCALING RELATIONS
 seismicity 1 Delta #SlipRate in mm/year

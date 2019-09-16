@@ -124,7 +124,7 @@ end
 PGA1000 = getPGA1000(rrup,rhypo,M,h,mechanism,DeltaC1,Fevent,FFABA);
 
 if Vs30<Vlin
-    fsite = t12*log(Vsa/Vlin)-b*log(PGA1000+c)+b*log(PGA1000+c*(Vsa/Vlin)^n);
+    fsite = t12*log(Vsa/Vlin)-b*log(PGA1000+c)+b*log(PGA1000+c*(Vsa/Vlin).^n);
 else
     fsite = t12*log(Vsa/Vlin)+b*n*log(Vsa/Vlin);
 end
@@ -228,9 +228,9 @@ t13=Coeff(11);
 t14=Coeff(12);
 t15=Coeff(13);
 t16=Coeff(14);
-phi=Coeff(15);
-tau=Coeff(16);
-sigma=Coeff(17);
+phi   = 0.6;
+tau   = 0.43;
+sigma = 0.74;
 
 n  = 1.18;
 c  = 1.88;

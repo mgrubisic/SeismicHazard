@@ -8,7 +8,7 @@ IM           : 0.5
 im           : logsp(0.01,3,20)
 MaxDistance  : 500
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
@@ -141,9 +141,13 @@ source 760
 Ex  -11.92 -76.0 0
 
 Option 9 - PSDA setup                                                                                             
-d      :   logsp(1,200,10)                                                                                        
-realSa :   30                                                                                                     
-realD  :   40                                                                                                     
+d         : logsp(1,200,10)  # cm
+realSa    : 30
+realD     : 40
+imhazard  : full
+rng       : shuffle
+method    : PC
+optimize  : on # optimize "on" uses the conditional term M|Sa in M-dependent CDMs                                                                                                     
                                                                                                                   
 Option 10 Slope Parameters                                                                                        
 ky    :   mean 0.14 cov 0.2 samples 5
@@ -152,7 +156,7 @@ Ts    :   mean 0.33 cov 0.1 samples 5
 Option 11 Library of Slope Displacement Models                                                                    
 MB2019  handle psda_BMT2017M 
 BT2007  handle psda_BT2007M
-RA2011  handle psda_RathjeF rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
+RA2011  handle psda_RA2011F rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
                                                                                                                   
 Option 12 Slope Displacement Models                                                                               
 Slope Weights 0.5 0.5

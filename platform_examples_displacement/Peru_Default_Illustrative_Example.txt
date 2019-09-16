@@ -4,11 +4,11 @@ Image        : Lima.mat
 Boundary     : PER_adm1.shp
 Layer        : 
 ShearModulus : 3e11      #dyne/cm2
-IM           : 0.5
-im           : logsp(0.01,3,20)
+IM           : -5 -1 0 0.5
+im           : [logsp(0.001,100,20);logsp(0.1,60,20);logsp(0.01,3,20);logsp(0.01,3,20)]
 MaxDistance  : 500
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial
@@ -18,7 +18,7 @@ Clusters     : off 100 1
 
 Option 1 - Logic Tree Weights
 Geom Weight : 1
-Gmpe Weight : 0.3 0.7
+Gmpe Weight : 0.1 0.05 0.05 0.1 0.05 0.05 0.1 0.05 0.05 0.1 0.05 0.05 0.1 0.05 0.05
 Mscl Weight : 1 
 
 Option 2 - Source Geometry
@@ -54,24 +54,57 @@ F28 type area  mechanism crustal    gmpe 3 vertices   -8.551   -76.798    -30   
 F29 type area  mechanism crustal    gmpe 3 vertices  -13.349   -73.789    -30   -14.949   -72.106    -30  -15.743  -70.484   -30   -12.956   -69.414    -30    -11.656   -72.276     -30                                                                                                         
 
 Option 3 - GMPE Library
-at1  handle Youngs1997 mechanism interface
-at2  handle Youngs1997 mechanism intraslab
-at3  handle Zhao2006 mechanism interface
-at4  handle Zhao2006 mechanism intraslab
-at5  handle Mcverry2006 mechanism interface rvol 0
-at6  handle Mcverry2006 mechanism intraslab rvol 0
-at7  handle AtkinsonBoore2003 mechanism interface region General
-at8  handle AtkinsonBoore2003 mechanism intraslab region General
-at9  handle BCHydro2012 mechanism interface region Forearc DeltaC1 Central
-at10 handle BCHydro2012 mechanism intraslab region Forearc DeltaC1 Central
-at11 handle Mcverry2006 mechanism reverse rvol 0
+at1  handle BCHydro2012 mechanism interface region Forearc DeltaC1 Central
+at2  handle BCHydro2012 mechanism intraslab region Forearc DeltaC1 Central
+at3  handle AtkinsonBoore2003 mechanism interface region General
+at4  handle AtkinsonBoore2003 mechanism intraslab region General
+at5  handle Zhao2006 mechanism interface
+at6  handle Zhao2006 mechanism intraslab
+at7  handle Macedo2019 conditioning BCHydro2012 mechanism interface region Forearc DeltaC1 Central
+at8  handle Macedo2019 conditioning BCHydro2012 mechanism intraslab region Forearc DeltaC1 Central
+at9  handle Macedo2019 conditioning AtkinsonBoore2003 mechanism interface region General
+at10 handle Macedo2019 conditioning AtkinsonBoore2003 mechanism intraslab region General
+at11 handle Macedo2019 conditioning Zhao2006 mechanism interface
+at12 handle Macedo2019 conditioning Zhao2006 mechanism intraslab
+at13 handle ASK_2014_nga mechanism reverse event mainshock Z10 unk Vs30type measured region global   
+at14 handle BSSA_2014_nga mechanism reverse region global BasinDepth unk
+at15 handle CB_2014_nga mechanism reverse HW include Z25 999 region global
+at16 handle CY_2014_nga mechanism reverse Z10 unk Vs30type measured region global
+at17 handle I_2014_nga mechanism reverse
+at18 handle Macedo2019 conditioning ASK_2014_nga mechanism reverse event mainshock Z10 unk Vs30type measured region global   
+at19 handle Macedo2019 conditioning BSSA_2014_nga mechanism reverse region global BasinDepth unk
+at20 handle Macedo2019 conditioning CB_2014_nga mechanism reverse HW include Z25 999 region global
+at21 handle Macedo2019 conditioning CY_2014_nga mechanism reverse Z10 unk Vs30type measured region global
+at22 handle Macedo2019 conditioning I_2014_nga mechanism reverse
+
+at23 handle franky gmm1 1  gmm2 7 
+at24 handle franky gmm1 2  gmm2 8 
+at25 handle franky gmm1 3  gmm2 9 
+at26 handle franky gmm1 4  gmm2 10
+at27 handle franky gmm1 5  gmm2 11
+at28 handle franky gmm1 6  gmm2 12
+at29 handle franky gmm1 13 gmm2 18
+at30 handle franky gmm1 14 gmm2 19
+at31 handle franky gmm1 15 gmm2 20
+at32 handle franky gmm1 16 gmm2 21
+at33 handle franky gmm1 17 gmm2 22
 
 Option 4 - GMPE GROUPS
-Youngs 1997, Sadigh 1997           pointers 1 2 11  
-Zhao 2006, Sadigh 1997             pointers 3 4 11
-#McVerry 2006, Sadigh 1997          pointers 5 6 11
-#AB 2003, Sadigh 1997               pointers 7 8 11
-#BCHydro 2012, Sadigh 1997          pointers 9 10 11
+gmm1  pointers 23 24 29
+gmm2  pointers 25 26 29
+gmm3  pointers 27 28 29
+gmm4  pointers 23 24 30 
+gmm5  pointers 25 26 30 
+gmm6  pointers 27 28 30  
+gmm7  pointers 23 24 31  
+gmm8  pointers 25 26 31  
+gmm9  pointers 27 28 31  
+gmm10 pointers 23 24 32  
+gmm11 pointers 25 26 32  
+gmm12 pointers 27 28 32  
+gmm13 pointers 23 24 33  
+gmm14 pointers 25 26 33  
+gmm15 pointers 27 28 33  
 
 Option 5 - MAGNITUDE SCALING RELATIONS
 seismicity 1 SENCICO 2016
@@ -141,22 +174,28 @@ source 760
 Ex  -11.18 -77.50 0
 
 Option 9 - PSDA setup                                                                                             
-d      :   logsp(1,200,10)                                                                                        
-realSa :   30                                                                                                     
-realD  :   40                                                                                                     
+d         : logsp(1,200,10)  # cm
+realSa    : 30
+realD     : 40
+imhazard  : full
+rng       : shuffle
+method    : PC
+optimize  : on # optimize "on" uses the conditional term M|Sa in M-dependent CDMs                                                                                                    
                                                                                                                   
 Option 10 Slope Parameters                                                                                        
-ky    :   mean 0.14 cov 0.2 samples 2
-Ts    :   mean 0.33 cov 0.1 samples 2
+ky    :   mean 0.14 cov 0.2 samples 3
+Ts    :   mean 0.33 cov 0.1 samples 3
                                                                                                                   
 Option 11 Library of Slope Displacement Models                                                                    
-MB2019  handle psda_BMT2017M 
+BMT2017 handle psda_BMT2017M
 BT2007  handle psda_BT2007M
-RA2000  handle psda_RathjeR rho 0.6
-RA2011  handle psda_RathjeF rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
-
+RA2011  handle psda_RA2011F rho 0.6 rhok 0.6 Tm_mean 1 Tm_cov 0.15 Tm_Nsta 3 
+JIBSON  handle psda_J07M
+BM2019  handle psda_BM2019M
                                                                                                                   
 Option 12 Slope Displacement Models                                                                               
-Slope Weights 0.5 0.5
-SL1 interface MB2019 intraslab MB2019 crustal BT2007 grid MB2019
-SL2 interface MB2019 intraslab MB2019 crustal RA2000 grid MB2019
+Slope Weights 0.25 0.25 0.25 0.25
+SL1 interface BMT2017 intraslab BMT2017 crustal BT2007 grid BMT2017
+SL2 interface BMT2017 intraslab BMT2017 crustal RA2011 grid BMT2017
+SL3 interface BMT2017 intraslab BMT2017 crustal JIBSON grid BMT2017
+SL4 interface BMT2017 intraslab BMT2017 crustal BM2019 grid BMT2017

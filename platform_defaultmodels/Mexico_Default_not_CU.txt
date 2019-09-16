@@ -8,7 +8,7 @@ IM           : PGA
 im           : 0.05:0.05:1.2
 MaxDistance  : 1000
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01  
 IM2          : 0.1
 Spatial      : @none_spatial

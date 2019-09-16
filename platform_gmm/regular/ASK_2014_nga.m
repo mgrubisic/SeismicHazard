@@ -9,19 +9,18 @@ if  and(To<0 || To> 10,To~=-1)
     sigma = nan(size(M));
     tau   = nan(size(M));
     sig   = nan(size(M));
-    %IM    = IM2str(To);
-    %h=warndlg(sprintf('GMPE %s not available for %s',mfilename,IM{1}));
-    %uiwait(h);
     return
 end
 
+if ischar(Z10),Z10=999;end
+if ischar(W)  ,W  =999;end
 if To>=0
     To      = max(To,0.001); %PGA is associated to To=0.01;
 end
 period = [0.01	0.02	0.03	0.05	0.075	0.1	0.15	0.2	0.25	0.3	0.4	0.5	0.75	1	1.5	2	3	4	5	6	7.5	10	0.001	-1];
 T_lo    = max(period(period<=To));
 T_hi    = min(period(period>=To));
-index   = find(abs((period - T_lo)) < 1e-6); % Identify the period
+index   = find(abs((period - T_lo)) < 0.0001); % Identify the period
 
 if T_lo==T_hi
     [lny,sigma,tau] = gmpe(index,M, Rrup, Rjb, Rx, Ry0, Ztor, delta, W, mechanism, event, Z10, Vs30, Vs30type, reg);
@@ -60,8 +59,8 @@ switch reg
 end
 
 switch Vs30type
-    case 'measured', FVS30=1; % thereis an error in bakers_ASK_nga, see line
-    case 'inferred', FVS30=0;
+    case 'measured', FVS30=0;
+    case 'inferred', FVS30=1;
 end
 
 switch event
@@ -81,11 +80,11 @@ if W == 999
     W = min(18./sin(deg2rad(delta)),10.^(-1.75+0.45.*M));
 end
 
-if ischar(Z10) && strcmp(Z10,'unk')
+if Z10==999
     if region == 2
-        Z10 = exp(-5.23 ./ 2 .* log((Vs30 ^ 2 + 412 ^ 2) ./ (1360 ^ 2 + 412 ^ 2))) ./ 1000;
+        Z10 = exp(-5.23 ./ 2 .* log((Vs30.^2 + 412 ^ 2) ./ (1360 ^ 2 + 412 ^ 2))) ./ 1000;
     else %'non-japanese
-        Z10 = exp((-7.67 ./ 4) .* log((Vs30 ^ 4 + 610 ^ 4) ./ (1360 ^ 4 + 610 ^ 4))) ./ 1000;
+        Z10 = exp((-7.67 ./ 4) .* log((Vs30.^4 + 610 ^ 4) ./ (1360 ^ 4 + 610 ^ 4))) ./ 1000;
     end
 end
 
@@ -398,6 +397,16 @@ else
     x1z = 700;
     x2z = 1000;
 end
+
+
+if Z10 == 999
+    if region == 2
+        Z10 = exp(-5.23 / 2 * log((Vs30 .^ 2 + 412 ^ 2) / (1360 ^ 2 + 412 ^ 2))) / 1000; %km
+    else %'non-japanese
+        Z10 = exp((-7.67 / 4) * log((Vs30 .^ 4 + 610 ^ 4) / (1360 ^ 4 + 610 ^ 4))) / 1000; %km
+    end
+end
+
 
 %'f10 term goes to zero at 1180 m/s (reference)
 f10 = (y1z + (Vs30 - x1z) .* (y2z - y1z) ./ (x2z - x1z)) .* log((Z10 + 0.01) ./ (Z1ref + 0.01));

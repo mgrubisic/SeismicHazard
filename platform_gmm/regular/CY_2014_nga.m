@@ -1,4 +1,4 @@
-function [lny,sigma,tau,sig] = CY_2014_nga(To,M, Rup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30, Vs30type, reg)
+function [lny,sigma,tau,sig] = CY_2014_nga(To,M, Rrup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30, Vs30type, reg)
 
 % Brian S.-J. Chiou and Robert R. Youngs (2014) Update of the Chiou and 
 % Youngs NGA Model for the Average Horizontal Component of Peak Ground 
@@ -16,6 +16,8 @@ if  and(To<0 || To> 10,To~=-1)
     return
 end
 
+if ischar(Ztor),Ztor = 999;end
+if ischar(Z10),Z10   = 999;end
 if To>=0
     To      = max(To,0.001); %PGA is associated to To=0.01;
 end
@@ -25,11 +27,11 @@ T_hi    = min(period(period>=To));
 index   = find(abs((period - T_lo)) < 1e-6); % Identify the period
 
 if T_lo==T_hi
-    [lny,sigma,sig] = gmpe(index,M, Rup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30, Vs30type, reg);
+    [lny,sigma,sig] = gmpe(index,M, Rrup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30, Vs30type, reg);
     tau              = sqrt(sigma.^2-sig.^2);
 else
-    [lny_lo,sigma_lo,sig_lo] = gmpe(index,  M, Rup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30,Vs30type, reg);
-    [lny_hi,sigma_hi,sig_hi] = gmpe(index+1,M, Rup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30,Vs30type, reg);
+    [lny_lo,sigma_lo,sig_lo] = gmpe(index,  M, Rrup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30,Vs30type, reg);
+    [lny_hi,sigma_hi,sig_hi] = gmpe(index+1,M, Rrup, Rjb, Rx, Ztor, delta, mechanism, Z10, Vs30,Vs30type, reg);
     x          = log([T_lo;T_hi]);
     Y_sa       = [lny_lo,lny_hi]';
     Y_sigma    = [sigma_lo,sigma_hi]';
@@ -221,7 +223,7 @@ else
     z_1= exp(-5.23./2.*log((Vs30.^2+412.39.^2)./(1360.^2+412.39.^2)));
 end
 
-if strcmp(Z10,'unk')
+if Z10 ==999
     d_Z1 = 0;
 else
     d_Z1=Z10.*1000-z_1;

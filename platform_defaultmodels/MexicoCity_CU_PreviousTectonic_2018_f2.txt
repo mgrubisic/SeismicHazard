@@ -5,10 +5,10 @@ Boundary     : MEX_adm0.shp
 Layer        :
 ShearModulus : 3e11      #dyne/cm2
 IM           : PGA
-im           : 0.05:0.02:0.35
+im           : logsp(0.01,1,20)
 MaxDistance  : 1000
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01  
 IM2          : 0.1 0.2 0.5 1 2
 Spatial      : @none_spatial

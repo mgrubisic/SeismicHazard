@@ -15,7 +15,7 @@ IM           : -1 0
 im           : [logsp(0.1,60,30); logsp(0.01,2,30)]
 MaxDistance  : 500
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01
 IM2          : 1 2
 Spatial      : @none_spatial
@@ -34,7 +34,7 @@ S1 type area mechanism shallowcrustal gmpe 1 vertices 38.00000 -122 0   38.00000
 
 Option 3 - GMPE Library
 ASK2014    handle ASK_2014_nga mechanism strike-slip event mainshock Z10 0.048 Vs30type measured region california
-PCENGAWest handle PCE_ngawest2 mechanism strike-slip event mainshock Z10 0.048 Vs30type measured region california
+PCENGAWest handle PCE_nga mechanism strike-slip event mainshock Z10 0.048 Vs30type measured region california
 
 Option 4 - GMPE GROUPS
 ASK2014 pointers 1
@@ -49,28 +49,33 @@ S1 type rectangular spacing 0.25 RA custom 1 4 0 aratio 2 taper true
 
 Option 7 - Pre defined sites (Optional)
 source 760
-site2 38.1130  -122.114 0.0000 Vs30 760 # 10km West of fault, at midpoint                                                                                                               
+site1 38.0000  -122.114 0.0000 Vs30 760 # 10km West of fault, at midpoint
+#site2 38.1130  -122.114 0.0000 Vs30 760 # 10km West of fault, at midpoint                                                                                                               
 
 Option 9 - PSDA setup
-d      :   logsp(1,100,10)
-realSa :   30
-realD  :   40
+d         : logsp(1,200,10)  # cm
+realSa    : 30
+realD     : 40
+imhazard  : full
+rng       : shuffle
+method    : PC
+optimize  : on # optimize "on" uses the conditional term M|Sa in M-dependent CDMs
 
 Option 10 Slope Parameters
 ky    :   mean 0.1 cov 0.3 samples 2
 Ts    :   mean 0.5 cov 0.1 samples 3
 
 Option 11 Library of Slope Displacement Models
-RR    handle psda_RathjeR rho 0.6
-RF    handle psda_RathjeF rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
-PCE1  handle psda_BT2007_pce avgHazard N integration pce sampling random
-PCE2  handle psda_BT2007_pce avgHazard Y integration pce sampling random
+RR    handle psda_RA2011R rho 0.6
+RF    handle psda_RA2011F rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
+PCE1  handle psda_BT2007_cdm
+PCE2  handle psda_BT2007_cdm
 
 Option 12 Slope Displacement Models
 Slope Weights 0.5 0.5
 SL1 interface RR intraslab RR crustal RR grid RR
 SL2 interface RF intraslab RF crustal RF grid RF
 
-Option 13 Slope Displacement Models
+Option 13 Slope Displacement Models with PC
 SLpce1 hazard 1 2 1 meanky 0.1 covky 0.3 meanTs 0.5 covTs 0.1 interface PCE1 intraslab PCE1 crustal PCE1 grid PCE1
 SLpce2 hazard 1 2 1 meanky 0.2 covky 0.3 meanTs 0.3 covTs 0.1 interface PCE2 intraslab PCE2 crustal PCE2 grid PCE2

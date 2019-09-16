@@ -1,6 +1,8 @@
 function[vout]=psda_BM2019M(ky,Ts,im,M,varargin)
-% Bray, J. D., Macedo, J. L.(2019). Procedure for Estimating Shear-Induced Seismic
-% Slope Displacement for Shallow Crustal Earthquakes  (ASCE).
+
+% Bray, J.D., and Macedo, J. (2019) "Procedure for Estimating Shear-Induced 
+% Seismic Slope Displacement for Shallow Crustal Earthquakes"
+% J. of Geotechnical and Geoenvironmental Engineering, ASCE, in press.
 
 % ky = yield coefficient
 % Ts = fundamental period
@@ -68,30 +70,37 @@ if Ts>0.1
     end
     Pzero=P;
     
-    lnEDP=exp(d1(1)+d2(1)*log(ky)+d3(1)*(log(ky))^2+d4(1)*log(ky)*log(im)+d5(1)*log(im)+d6(1)*(log(im)).^2+d7(1)*Ts+d8(1)*(Ts)^2+d9(1)*(M));
+    lnEDP=d1(1)+d2(1)*log(ky)+d3(1)*(log(ky))^2+d4(1)*log(ky)*log(im)+d5(1)*log(im)+d6(1)*(log(im)).^2+d7(1)*Ts+d8(1)*(Ts)^2+d9(1)*(M);
     
     
 end
-%%
-y     = max(varargin{1},0.5);
+
+if nargin==4
+   vout=[lnEDP,sig];
+   return
+end
+
+
+y0    = 0.5;
+y     = max(varargin{1},y0);
 dist  = varargin{2};
 if strcmp(dist,'pdf')
-    if y > 0.5
+    if y > y0
         vout = (1-Pzero).*lognpdf(y,lnEDP,sig);
-    elseif y==0.5
-        vout = Pzero;
+    elseif y==y0
+        vout = Pzero/y0;
     end
     
 elseif strcmp(dist,'cdf')
-    if y >= 0.5
+    if y >= y0
         vout = Pzero + (1-Pzero).*(logncdf(y,lnEDP,sig));
-    elseif y==0.5
+    elseif y==y0
         vout = Pzero;
     end
 elseif strcmp(dist,'ccdf')
-    if y >= 0.5
+    if y >= y0
         vout = 1- (Pzero + (1-Pzero).*(logncdf(y,lnEDP,sig)));
-    elseif y==0.5
+    elseif y==y0
         vout = 1-Pzero;
     end
 end

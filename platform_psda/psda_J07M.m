@@ -1,16 +1,9 @@
-function[varargout]=psda_J07M(ky,~,im,M,varargin)
+function[vout]=psda_J07M(ky,~,im,M,varargin)
                           
+% Jibson, R. W. (2007). Regression models for estimating coseismic 
+% landslide displacement. Engineering geology, 91(2-4), 209-218.
 
-% ky = yield acceleration
-% im = PGA, intensity measure
-%
-% Reference:
-% Ambraseys, N. N., & Menu, J. M. (1988). Earthquake-induced ground 
-% displacements. Earthquake engineering & structural dynamics, 
-% 16(7), 985-1006.
-%
-%
-%------------------------------------------------------------
+%%
 im    = max(im,ky+eps);
 aratio = ky./im;
 %------------------------------------------------------------
@@ -21,18 +14,16 @@ logsig = 0.454;
 sig    = logsig*log(10)*ones(size(lnEDP));
 
 if nargin==4
-    % empty varargin returns medium values and the standard deviation
-    varargout{1}=lnEDP;
-    varargout{2}=sig;
-    return
+   vout=[lnEDP,sig];
+   return
 end
 
 y    = varargin{1};
 dist = varargin{2};
 if strcmp(dist,'pdf')
-    varargout{1} = lognpdf(y,lnEDP,sig);
+    vout = lognpdf(y,lnEDP,sig);
 elseif strcmp(dist,'cdf')
-    varargout{1} = logncdf(y,lnEDP,sig);
+    vout = logncdf(y,lnEDP,sig);
 elseif strcmp(dist,'ccdf')
-    varargout{1} = 1-logncdf(y,lnEDP,sig);
+    vout = 1-logncdf(y,lnEDP,sig);
 end

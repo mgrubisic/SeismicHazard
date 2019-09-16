@@ -8,7 +8,7 @@ IM           : PGA
 im           : logsp(0.001,3,20)
 MaxDistance  : 500
 MagDiscrete  : gauss 8
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01
 IM2          : 1 2
 Spatial      : @none_spatial
@@ -161,9 +161,13 @@ source 760
 LasCondes  -33.4124 -70.5635 0.6913
 
 Option 9 - PSDA setup
-d      :   logsp(1,100,10)
-realSa :   30
-realD  :   40
+d         : logsp(1,200,10)  # cm
+realSa    : 30
+realD     : 40
+imhazard  : full
+rng       : shuffle
+method    : PC
+optimize  : on # optimize "on" uses the conditional term M|Sa in M-dependent CDMs
 
 Option 10 Slope Parameters
 ky    :   mean 0.1 cov 0.3 samples 2
@@ -177,17 +181,17 @@ DISP4  handle psda_RS09M
 DISP5  handle psda_BM2019M mode 1
 DISP6  handle psda_BT2007
 DISP7  handle psda_AM1988
-DISP8  handle psda_J07
-DISP9  handle psda_RathjeR rho 0.6
-DISP10 handle psda_RathjeF rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
-PCE1   handle psda_BT2007_pce avgHazard Y integration pce sampling random
-PCE2   handle psda_BT2007_pce avgHazard N integration pce sampling random
+DISP8  handle psda_J07Ia
+DISP9  handle psda_RA2011R rho 0.6
+DISP10 handle psda_RA2011F rho 0.6 rhok 0.6 Tm_mean 0.5 Tm_cov 0.15 Tm_Nsta 0 
+PCE1   handle psda_BT2007_cdm
+PCE2   handle psda_BT2007_cdm
 
 Option 12 Slope Displacement Models
 Slope Weights 0.5 0.5
 SL1 interface DISP1 intraslab DISP1 crustal DISP2 grid DISP1
 SL2 interface DISP7 intraslab DISP7 crustal DISP2 grid DISP1
 
-Option 13 Slope Displacement Models
+Option 13 Slope Displacement Models with PC
 SLpce1 hazard 1 1 1 meanky 0.1 covky 0.3 meanTs 0.5 covTs 0.1  interface PCE1 intraslab PCE1 crustal PCE1 grid PCE1
 SLpce2 hazard 1 2 1 meanky 0.2 covky 0.3 meanTs 0.3 covTs 0.1  interface PCE2 intraslab PCE2 crustal PCE2 grid PCE2

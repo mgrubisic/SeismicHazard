@@ -1,9 +1,5 @@
-function[varargout]=psda_AM1988(ky,~,im,varargin)
+function[vout]=psda_AM1988(ky,~,im,varargin)
 
-% ky = yield acceleration
-% im = PGA, intensity measure
-%
-% Reference:
 % Ambraseys, N. N., & Menu, J. M. (1988). Earthquake-induced ground 
 % displacements. Earthquake engineering & structural dynamics, 
 % 16(7), 985-1006.
@@ -20,18 +16,16 @@ lnEDP  = logEDP *log(10);
 sig    = logsig*log(10)*ones(size(lnEDP));
 
 if nargin==3
-    % empty varargin returns medium values and the standard deviation
-    varargout{1}=lnEDP;
-    varargout{2}=sig;
-    return
+   vout=[lnEDP,sig];
+   return
 end
 
 y    = varargin{1};
 dist = varargin{2};
 if strcmp(dist,'pdf')
-    varargout{1} = lognpdf(y,lnEDP,sig);
+    vout = lognpdf(y,lnEDP,sig);
 elseif strcmp(dist,'cdf')
-    varargout{1} = logncdf(y,lnEDP,sig);
+    vout = logncdf(y,lnEDP,sig);
 elseif strcmp(dist,'ccdf')
-    varargout{1} = 1-logncdf(y,lnEDP,sig);
+    vout = 1-logncdf(y,lnEDP,sig);
 end

@@ -4,11 +4,11 @@ Image        : chile.mat
 Boundary     : CHL_adm1.shp
 Layer        :
 ShearModulus : 3e11      #dyne/cm2
-IM           : PGA
+IM           : 0.01 0.02 0.1 0.5 1 2
 im           : logsp(0.01,1,20)
 MaxDistance  : 500
 MagDiscrete  : gauss 10
-SimPCE       : 10
+CGMM         : shuffle MC 500
 IM1          : 0.01
 IM2          : 1 2
 Spatial      : @none_spatial

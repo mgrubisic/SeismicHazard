@@ -1,4 +1,4 @@
-function [lny, sigma,tau,sig] = CB_2014_nga(To, M, Rrup, Rjb, Rx, W, Ztor, Zhyp, delta, mechanism, HWEffect, Vs30, Z25, reg)
+function [lny, sigma,tau,sig] = CB_2014_nga(To, M, Rrup, Rjb, Rx, W, Ztor, Zbot, delta, mechanism, HWEffect, Vs30, Z25, Zhyp, reg)
 
 % Kenneth W. Campbell and Yousef Bozorgnia (2014) NGA-West2 Ground Motion 
 % Model for the Average Horizontal Components of PGA, PGV, and 5% Damped 
@@ -16,6 +16,9 @@ if  and(To<0 || To> 10,To~=-1)
     return
 end
 
+if ischar(W)      ,W    = 999;end
+if ischar(Zbot(1)),Zbot = 999;end
+if ischar(Zhyp(1)),Zhyp = 999*ones(size(M));end
 
 if To>=0
     To      = max(To,0.001); %PGA is associated to To=0.01;
@@ -26,11 +29,11 @@ T_hi    = min(period(period>=To));
 index   = find(abs((period - T_lo)) < 1e-6); % Identify the period
 
 if T_lo==T_hi
-    [lny,sigma,tau] = gmpe(index,  M, Rrup, Rjb, Rx, W, Ztor,  Zhyp, delta, mechanism, HWEffect, Vs30, Z25, reg);
+    [lny,sigma,tau] = gmpe(index,  M, Rrup, Rjb, Rx, W, Ztor,  Zbot, delta, mechanism, HWEffect, Vs30, Z25, Zhyp,reg);
     sig        = sqrt(sigma.^2-tau.^2);
 else
-    [lny_lo,sigma_lo,tau_lo] = gmpe(index,   M, Rrup, Rjb, Rx, W, Ztor,  Zhyp, delta, mechanism, HWEffect, Vs30, Z25, reg);
-    [lny_hi,sigma_hi,tau_hi] = gmpe(index+1, M, Rrup, Rjb, Rx, W, Ztor,  Zhyp, delta, mechanism, HWEffect, Vs30, Z25, reg);
+    [lny_lo,sigma_lo,tau_lo] = gmpe(index,   M, Rrup, Rjb, Rx, W, Ztor,  Zbot, delta, mechanism, HWEffect, Vs30, Z25, Zhyp,reg);
+    [lny_hi,sigma_hi,tau_hi] = gmpe(index+1, M, Rrup, Rjb, Rx, W, Ztor,  Zbot, delta, mechanism, HWEffect, Vs30, Z25, Zhyp,reg);
     x          = log([T_lo;T_hi]);
     Y_sa       = [lny_lo,lny_hi]';
     Y_sigma    = [sigma_lo,sigma_hi]';
@@ -41,7 +44,7 @@ else
     sig        = sqrt(sigma.^2-tau.^2);
 end
 
-function[lny,sigma,tau]=gmpe(index, M, Rrup, Rjb, Rx, W, Ztor,  Zhyp, delta, mechanism, HWEffect, Vs30, Z25, reg)
+function[lny,sigma,tau]=gmpe(index, M, Rrup, Rjb, Rx, W, Ztor,  Zbot, delta, mechanism, HWEffect, Vs30, Z25, Zhyp,reg)
 
 % Style of faulting
 switch mechanism
@@ -77,20 +80,20 @@ if Ztor(1) == 999
 end
 
 % if W is unknown
-% if W == 999
-%     if Frv == 1
-%         Ztori = max(2.704 - 1.226*max(M-5.849,0),0).^2;
-%     else
-%         Ztori = max(2.673 - 1.136*max(M-4.970,0),0).^2;
-%     end
-%     W = min(sqrt(10.^((M-4.07)./0.98)),(Zbot - Ztori)./sin(pi/180*delta));
-%     Zhyp = 9;
-% end
+if W == 999
+    if Frv == 1
+        Ztori = max(2.704 - 1.226*max(M-5.849,0),0).^2;
+    else
+        Ztori = max(2.673 - 1.136*max(M-4.970,0),0).^2;
+    end
+    W = min(sqrt(10.^((M-4.07)./0.98)),(Zbot - Ztori)./sin(pi/180*delta));
+    Zhyp = 9;
+end
 
 % if Zhyp is unknown
 if Zhyp(1) == 999 && W ~= 999
     fdZM=-4.317 + 0.984.*M;
-    fdZM(M>=6.75)=2.325;
+    fdZM(M>=6.75)=1.325;
     if delta <= 40
         fdZD = 0.0445*(delta-40);
     else
@@ -211,20 +214,32 @@ Sj = region==2;
 % if Z2.5 is unknown
 if Z25in == 999
     if region ~= 2  % if in California or other locations
-        Z25 = exp(7.089 - 1.144 * log(Vs30));
-%         Z25A = exp(7.089 - 1.144 * log(1100));
+        if A1100==999
+            Z25 = exp(7.089 - 1.144 * log(Vs30));
+        else
+            Z25 = exp(7.089 - 1.144 * log(1100));
+        end
     elseif region == 2  % if in Japan
-        Z25 = exp(5.359 - 1.102 * log(Vs30));
-%         Z25A = exp(5.359 - 1.102 * log(1100));
+        if A1100==999
+            Z25 = exp(5.359 - 1.102 * log(Vs30));
+        else
+            Z25 = exp(5.359 - 1.102 * log(1100));
+        end
     end
 else
     % Assign Z2.5 from user input into Z25 and calc Z25A for Vs30=1100m/s
     if region ~= 2  % if in California or other locations
-        Z25 = Z25in;
-%         Z25A = exp(7.089 - 1.144 * log(1100));
+        if A1100==999
+            Z25 = Z25in;
+        else
+            Z25 = exp(7.089 - 1.144 * log(1100));
+        end
     elseif region == 2  % if in Japan
-        Z25 = Z25in;
-%         Z25A = exp(5.359 - 1.102 * log(1100));
+        if A1100==999
+            Z25 = Z25in;
+        else
+            Z25 = exp(5.359 - 1.102 * log(1100));
+        end
     end
 end
 
