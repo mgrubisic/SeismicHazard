@@ -1,4 +1,4 @@
-function[lambdaD]=psda_BT2007_cdm (Ts_param, ky_param, psda_param, im,HAZ,Cz)
+function[lambdaD]=psda_BT2007_cdm_benchmark(Ts_param, ky_param, psda_param, im,HAZ,Cz,varargin)
 
 % Bray, J. D., & Travasarou, T. (2007). Simplified procedure for estimating
 % earthquake-induced deviatoric slope displacements. Journal of Geotechnical
@@ -11,10 +11,17 @@ realD  = psda_param.realD;
 Nd     = length(d);     % N° of displacement values of lambdaD
 Nim    = length(im);    % N° of acceleration values of lambdaSa
 
-pd    = makedist('Normal');
-t     = truncate(pd,-2,2);
-xrnd  = random(t,1,realD);
-zrnd  = random(t,1,realSa);
+if nargin==6
+    pd    = makedist('Normal');
+    t     = truncate(pd,-2,2);
+    xrnd  = random(t,1,realD);
+    zrnd  = random(t,1,realSa);
+    irule = 'simpson';
+else
+    xrnd  = varargin{1}; realD  = length(xrnd);
+    zrnd  = varargin{2}; realSa = length(zrnd);
+    irule = varargin{3};
+end
 
 if length(Ts_param)==2, Ts_param = [Ts_param,100]; end; NTs = Ts_param(3);
 if length(ky_param)==2, ky_param = [ky_param,100]; end; Nky = ky_param(3);
@@ -26,6 +33,11 @@ Ts       = Ts(:)';
 if strcmp(psda_param.imhazard,'average')
     Percent = 50;
     HAZ     = repmat(prctile(HAZ,Percent,2),1,realSa);
+end
+
+if strcmp(irule,'rectangular')
+    dHAZ  = diff(HAZ,1); dHAZ(end+1,:)=dHAZ(end,:);
+    dHAZ  = dHAZ';
 end
 
 switch psda_param.method
@@ -41,13 +53,26 @@ switch psda_param.method
         std_d   = std(lnd,[], 2);
         lambdaD = zeros(realD * realSa, length(d));
         
-        for i = 1:Nd
-            for j = 1:realD
-                xhat = (log(d(i)) - (mean_d + std_d* xrnd(j)))/sigmaD;
-                Pd   = 0.5*(1-erf(xhat/sqrt(2)));
-                IND  = (1:realSa)+realSa*(j-1);
-                lambdaD(IND,i) = trapz(Pd,HAZ)';   % simpson rule
-            end
+        switch irule
+            case 'simpson'
+                for i = 1:Nd
+                    for j = 1:realD
+                        xhat = (log(d(i)) - (mean_d + std_d* xrnd(j)))/sigmaD;
+                        Pd   = 0.5*(1-erf(xhat/sqrt(2)));
+                        IND  = (1:realSa)+realSa*(j-1);
+                        lambdaD(IND,i) = trapz(Pd,HAZ)';   % simpson rule
+                    end
+                end
+                
+            case 'rectangular'
+                for i = 1:Nd
+                    for j = 1:realD
+                        xhat = (log(d(i)) - (mean_d + std_d* xrnd(j)))/sigmaD;
+                        Pd   = 0.5*(1-erf(xhat/sqrt(2)));
+                        IND  = (1:realSa)+realSa*(j-1);
+                        lambdaD(IND,i) = -dHAZ*Pd;   % rectangular rule
+                    end
+                end
         end
         
     case 'PC'

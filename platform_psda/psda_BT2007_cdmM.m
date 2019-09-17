@@ -1,4 +1,4 @@
-function[lamdaD]=psda_BT2007_cdmM(Ts_param, ky_param, psda_param,im,M,dPm,Cz,varargin)
+function[lambdaD]=psda_BT2007_cdmM(Ts_param, ky_param, psda_param,im,M,dPm,Cz,varargin)
 
 % Bray, J. D., & Travasarou, T. (2007). Simplified procedure for estimating 
 % earthquake-induced deviatoric slope displacements. Journal of Geotechnical
@@ -92,14 +92,16 @@ for m=1:length(M)
     PC_term_4_summed = PC_term_4_summed + sum(PC_term_4_array ,1) * dPm(m);
 end
 
-lamdaD = zeros(realSa*realD,Nd);
+lambdaD = zeros(realSa*realD,Nd);
 
 for i = 1:Nd
-    lamdaD(:, i) =...
+    lambdaD(:, i) =...
         PC_term_0_summed(i) * (xrnd.^0) + ...
         PC_term_1_summed(i) * (xrnd.^1) + ...
         PC_term_2_summed(i) * (xrnd.^2-1) + ...
         PC_term_3_summed(i) * (xrnd.^3-3*xrnd) + ...
         PC_term_4_summed(i) * (xrnd.^4-6*xrnd.^2+3);
 end
+
+% lambdaD(any(lambdaD<0,2),:)=nan;
 

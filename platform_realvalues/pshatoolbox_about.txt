@@ -1,7 +1,7 @@
 A NEW STATE OF THE ART PLATFORM FOR PROBABILISTIC AND DETERMINISTIC SEISMIC HAZARD ASSESSMENT
 
-Gabriel Candia †, Jorge Macedo , Miguel A. Jaimes , Carolina Magna-Verdugo 
-† Corresponding author: gcandia@udd.cl, Av. Plaza 680 Las Condes, Santiago-Chile.
+Gabriel Candia *, Jorge Macedo , Miguel A. Jaimes , Carolina Magna-Verdugo
+* Corresponding author: gcandia@udd.cl, Av. Plaza 680 Las Condes, Santiago-Chile.
 
 CITATION
 Gabriel Candia, Jorge Macedo, Miguel A. Jaimes, Carolina Magna-Verdugo; A New State of the Art Platform for Probabilistic and Deterministic Seismic Hazard Assessment. Seismological Research Letters. doi: https://doi.org/10.1785/0220190025"
@@ -11,7 +11,7 @@ The open source platform SeismicHazard complements existing PSHA software, and s
 Several software capabilities are not yet available and will be included in future releases of the code. For instance, the platform does not support time-dependent (non-Poissonian) magnitude recurrence models, non-uniform distribution of hypocenter locations along the dip for fault sources, mixture models for ground motion residuals or models other than lognormal, the support of fault-system earthquake-rupture forecast or the relaxation of the ergodic assumption.
 
 AUTHORS AND FUNDING INSTITUTIONS
-In the development of SeismicHazard, the authors listed above have received financial support from the following funding institutions: Facultad de Ingeniería Civil at Universidad del Desarrollo; the National Research Center for Integrated Natural Disaster Management CONICYT/FONDAP/15110017; FONDECYT through Grant N°1170836 "SIBER-RISK: SImulation Based Earthquake Risk and Resilience of Interdependent Systems and NetworKs"; FONDECYT through Grant N°11180937 "Seismic Risk of Mined Tunnels"; Georgia Institute of Technology through the start-up faculty funding of the second author, Instituto de Ingeniería UNAM through Research Fund R974; Facultad de Ingeniería y Ciencias at Universidad Adolfo Ibáñez; and Facultad de Ingeniería y Ciencias at Universidad Diego Portales. 
+In the development of SeismicHazard, the authors listed above have received financial support from the following funding institutions: Facultad de Ingenieria Civil at Universidad del Desarrollo; the National Research Center for Integrated Natural Disaster Management CONICYT/FONDAP/15110017; FONDECYT through Grant No.1170836 "SIBER-RISK: SImulation Based Earthquake Risk and Resilience of Interdependent Systems and NetworKs"; FONDECYT through Grant No.11180937 "Seismic Risk of Mined Tunnels"; Georgia Institute of Technology through the start-up faculty funding of the second author, Instituto de Ingenieria UNAM through Research Fund R974; Facultad de Ingenieria y Ciencias at Universidad Adolfo Ibanez; and Facultad de Ingenieria y Ciencias at Universidad Diego Portales.
 
 SYSTEM REQUIREMENTS
 Operating System
@@ -35,10 +35,10 @@ Others
 
 
 SOFTWARE DOWNLOAD AND INSTALLATION
-The platform files are organized in a folder structure, which shall be downloaded directly from GitHub at https://github.com/gacandia/SeismicHazard. To run the platform, add the entire folder structure to MATLAB's path typing the command addpath(genpath(install_dir)) in MATLAB's workspace, where install_dir is a string containing the full path to the installation directory. To run the platform, type SeismicHazard in MATLAB's workspace. 
+The platform files are organized in a folder structure, which shall be downloaded directly from GitHub at https://github.com/gacandia/SeismicHazard. To run the platform, add the entire folder structure to MATLAB's path typing the command addpath(genpath(install_dir)) in MATLAB's workspace, where install_dir is a string containing the full path to the installation directory. To run the platform, type SeismicHazard in MATLAB's workspace.
 
 USER AGREEMENT
-The distribution and commercialization of the SeismicHazard platform and any of its tools is prohibited, as well as any subsequent development as part of improvements to it without prior consultation of the platform corresponding author. Users are welcome to provide feedback, and report errors through GitHub. Updates and improvements to the code will be posted periodically. The users of the platform SeismicHazard are requested to cite the software´s SRL article in their work and publications. The correct citation shall be:
+The distribution and commercialization of the SeismicHazard platform and any of its tools is prohibited, as well as any subsequent development as part of improvements to it without prior consultation of the platform corresponding author. Users are welcome to provide feedback, and report errors through GitHub. Updates and improvements to the code will be posted periodically. The users of the platform SeismicHazard are requested to cite the software's SRL article in their work and publications. The correct citation shall be:
 
 "Gabriel Candia, Jorge Macedo, Miguel A. Jaimes, Carolina Magna-Verdugo; A New State of the Art Platform for Probabilistic and Deterministic Seismic Hazard Assessment. Seismological Research Letters. doi: https://doi.org/10.1785/0220190025"
 

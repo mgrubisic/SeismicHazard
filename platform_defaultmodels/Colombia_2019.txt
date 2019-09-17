@@ -5,7 +5,7 @@ Boundary     : COL_adm1.shp
 Layer        :
 ShearModulus : 3e11      #dyne/cm2
 IM           : PGA
-im           : 0.05:0.05:1.2
+im           : logsp(0.01,2,20)
 MaxDistance  : 1000
 MagDiscrete  : gauss 10
 CGMM         : shuffle MC 500

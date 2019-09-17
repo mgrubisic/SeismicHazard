@@ -46,7 +46,7 @@ end
 
 % Computation with input periods
 % interpolate between periods if neccesary
-lnPGA                = exp(BA_2008_nga_sub (rjb,  M, U,S,N,R, 760 ,2    ,'pga4nl'));
+lnPGA                = BA_2008_nga_sub (rjb,  M, U,S,N,R, 760 ,2    ,'pga4nl');
 [lny, sigma,tau,sig] = BA_2008_nga_sub (rjb,  M, U,S,N,R, Vs30,index,exp(lnPGA));
 
 function [lny, sigma,tau,sig] = BA_2008_nga_sub (Rjb,  M, U,S,N,R, Vs30,index,pga4nl)
