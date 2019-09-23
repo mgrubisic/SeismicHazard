@@ -7,11 +7,11 @@
   Period range for selection and loose matching:   0.010   2.000
   Period range for strict matching:   0.040   0.400
 
-  Magnitude range for selection of candidate spectra:   5.000   7.000
+  Magnitude range for selection of candidate spectra:   5.000   7.300
   Rrup is used to set the distance range
-  Distance range for selection of candidate spectra:     0.000  1000.000
-  Vs30 range:   450.000   900.000
-  Duration range for selection of candidate spectra:     5.000   150.000
+  Distance range for selection of candidate spectra:     0.000   300.000
+  Vs30 range:   550.000  1000.000
+  Duration range for selection of candidate spectra:    20.000   150.000
   PGV range for selection of candidate spectra:     0.000  3000.000
   Arias intensity range for selection of candidate spectra:     0.000  1000.000
 
@@ -35,51 +35,48 @@
 
  Intermediate Parameters:
 
- Total number of candidate TH:         904
+ Total number of candidate TH:         950
 
  Selected TH per hazard level:
   Haz. Level, Nb. of selected TH
-           1          37
-           2          35
-           3          33
-           4          32
-           5          31
-           6          31
-           7          31
-           8          32
-           9          32
-          10          33
+           1          29
+           2          26
+           3          24
+           4          24
+           5          23
+           6          22
+           7          22
+           8          21
+           9          21
 
  Subselected TH per hazard level (MonteCarlo):
   Haz. Level, Nb. of selected TH
-           1          32
-           2          32
-           3          32
-           4          32
-           5          31
-           6          31
-           7          31
-           8          32
-           9          32
-          10          32
+           1          29
+           2          26
+           3          24
+           4          24
+           5          23
+           6          22
+           7          22
+           8          21
+           9          21
 
- Scenarios removed (RateInitial/RateFinal > x):          190
- Scenarios removed (RateInitial/RateFinal > x):           23
- Scenarios removed (RateInitial/RateFinal > x):            4
+ Scenarios removed (RateInitial/RateFinal > x):          154
+ Scenarios removed (RateInitial/RateFinal > x):            7
  Scenarios removed (RateInitial/RateFinal > x):            0
 
  Output Parameters: 
 
-   Average misfit in horizontal UHS over all hazard levels and periods:           2.74%
+   Average misfit in horizontal UHS over all hazard levels and periods:           2.42%
 
    HORIZONTAL UHS:
-            Hazard Level:                             1.0E-02        4.5E-03        2.0E-03        1.0E-03        2.5E-04        1.0E-04        4.0E-05        6.0E-06        1.0E-06        1.0E-07
-       Average misfit over all freq range (%):          3.91           4.12           2.68           2.25           2.16           2.33           2.57           2.24           2.30           2.82
-       Average misfit in main freq range (%):           5.15           5.51           3.42           2.66           2.48           2.75           3.42           2.62           2.86           4.40
-       Average misfit in secondary freq range (%):      2.46           2.50           1.82           1.77           1.79           1.83           1.58           1.79           1.65           0.98
-       Maximum misfit (%):                             35.24          18.87          17.70          18.54          21.36          22.61          17.44          23.30          20.08          19.78
-       Period of maximum misfit (s):                    0.03           0.03           0.03           0.03           0.03           0.03           0.03           0.03           0.03           0.12
+            Hazard Level:                             1.0E-02        4.5E-03        2.0E-03        1.0E-03        2.5E-04        1.0E-04        4.0E-05        6.0E-06        1.0E-06
+       Average misfit over all freq range (%):          2.52           3.12           2.57           2.67           2.81           2.40           2.10           1.87           1.73
+       Average misfit in main freq range (%):           2.86           4.14           3.26           3.28           3.49           2.93           2.30           1.65           2.34
+       Average misfit in secondary freq range (%):      2.13           1.92           1.75           1.96           2.01           1.80           1.88           2.13           1.03
+       Maximum misfit (%):                             23.07          20.18          19.84          20.10          18.88          17.11          19.80          21.69          11.68
+       Period of maximum misfit (s):                    0.03           0.02           0.02           0.03           0.02           1.90           1.90           1.90           0.22
 
 
-   Total number of scenario spectra:  163
-   Number of unique scenario spectra:   34
+   Total number of scenario spectra:  127
+   Number of unique scenario spectra:   26

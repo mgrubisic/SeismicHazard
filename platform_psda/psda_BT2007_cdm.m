@@ -28,19 +28,19 @@ if strcmp(psda_param.imhazard,'average')
     HAZ     = repmat(prctile(HAZ,Percent,2),1,realSa);
 end
 
+lnd  = zeros(Nim,Nky*NTs);
+Tlow = Ts<0.05;
+for j=1:Nim
+    lnd(j, Tlow) = -0.22-2.83*log(ky( Tlow))-0.333*(log(ky( Tlow))).^2+0.566*log(ky( Tlow))*log(im(j))+3.04*log(im(j))-0.244*(log(im(j))).^2+1.5*Ts( Tlow);
+    lnd(j,~Tlow) = -1.10-2.83*log(ky(~Tlow))-0.333*(log(ky(~Tlow))).^2+0.566*log(ky(~Tlow))*log(im(j))+3.04*log(im(j))-0.244*(log(im(j))).^2+1.5*Ts(~Tlow);
+end
+mean_d  = mean(lnd, 2);
+std_d   = std(lnd,[], 2);
+sigmaD  = 0.67;
+
+lambdaD = zeros(realD*realSa, Nd);
 switch psda_param.method
     case 'MC'
-        lnd  = zeros(Nim,Nky*NTs);
-        Tlow = Ts<0.05;
-        for j=1:Nim
-            lnd(j, Tlow) = -0.22-2.83*log(ky( Tlow))-0.333*(log(ky( Tlow))).^2+0.566*log(ky( Tlow))*log(im(j))+3.04*log(im(j))-0.244*(log(im(j))).^2+1.5*Ts( Tlow);
-            lnd(j,~Tlow) = -1.10-2.83*log(ky(~Tlow))-0.333*(log(ky(~Tlow))).^2+0.566*log(ky(~Tlow))*log(im(j))+3.04*log(im(j))-0.244*(log(im(j))).^2+1.5*Ts(~Tlow);
-        end
-        sigmaD  = 0.67;
-        mean_d  = mean(lnd, 2);
-        std_d   = std(lnd,[], 2);
-        lambdaD = zeros(realD * realSa, length(d));
-        
         for i = 1:Nd
             for j = 1:realD
                 xhat = (log(d(i)) - (mean_d + std_d* xrnd(j)))/sigmaD;
@@ -51,15 +51,6 @@ switch psda_param.method
         end
         
     case 'PC'
-        lnd  = zeros(Nim,Nky*NTs);
-        Tlow = Ts<0.05;
-        for j=1:Nim
-            lnd(j, Tlow) = -0.22-2.83*log(ky( Tlow))-0.333*(log(ky( Tlow))).^2+0.566*log(ky( Tlow))*log(im(j))+3.04*log(im(j))-0.244*(log(im(j))).^2+1.5*Ts( Tlow);
-            lnd(j,~Tlow) = -1.10-2.83*log(ky(~Tlow))-0.333*(log(ky(~Tlow))).^2+0.566*log(ky(~Tlow))*log(im(j))+3.04*log(im(j))-0.244*(log(im(j))).^2+1.5*Ts(~Tlow);
-        end
-        mean_d  = mean(lnd, 2);
-        std_d   = std(lnd,[], 2);
-        sigmaD  = 0.67;
         
         PC_term_0_GM = Cz(1:Nim, 1)';
         PC_term_1_GM = Cz(1:Nim, 2)';
@@ -117,7 +108,6 @@ switch psda_param.method
             HSa(i,:)= H(i-1,zrnd');
         end
         
-        lambdaD = zeros(realD*realSa, Nd);
         for i = 1:Nd
             cont = 1;
             for j = 1:realD
